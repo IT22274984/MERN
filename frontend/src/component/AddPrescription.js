@@ -34,7 +34,7 @@ import {
   
     const sendRequest = async () => {
       await axios
-        .post("http://localhost:5000/prescription", {
+        .post("http://localhost:5000/prescriptions", {
           Sphere: Number(inputs.Sphere),
           Cylinder: Number(inputs.Cylinder),
           Axis: Number(inputs.Axis),
@@ -49,7 +49,7 @@ import {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log(inputs, checked);
-      sendRequest().then(() => history("/prescription"));
+      sendRequest().then(() => history("/prescriptions"));
     };
   
     return (

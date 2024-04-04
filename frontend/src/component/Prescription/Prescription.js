@@ -5,13 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Prescription.css";
 const Prescription = (props) => {
   const history = useNavigate();
-  const { _id, Sphere, Cylinder, Axis, PupilDistance, Lence, Description } = props.Prescription;
+  const { _id, Sphere, Cylinder, Axis, PupilDistance, Lence, Description } = props.prescription;
   const deleteHandler = async () => {
     await axios
-      .delete(`http://localhost:5000/prescription/${_id}`)
+      .delete(`http://localhost:5000/prescriptions/${_id}`)
       .then((res) => res.data)
       .then(() => history("/"))
-      .then(() => history("/prescription"));
+      .then(() => history("/prescriptions"));
   };
 
   return (
@@ -24,7 +24,7 @@ const Prescription = (props) => {
       <h3>Rs {Lence}</h3>
       <p>{Description}</p>
       
-      <Button LinkComponent={Link} to={`/prescription/${_id}`} sx={{ mt: "auto" }}>
+      <Button LinkComponent={Link} to={`/prescriptions/${_id}`} sx={{ mt: "auto" }}>
         Update
       </Button>
       <Button color="error" onClick={deleteHandler} sx={{ mt: "auto" }}>

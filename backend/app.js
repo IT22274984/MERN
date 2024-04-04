@@ -7,7 +7,7 @@ const app =express();
 //middlewares
 app.use(express.json());
 app.use(cors());
-app.use("/prescription",router);
+app.use("/prescriptions",router);// localhost:5000/books
 
 mongoose.connect("mongodb+srv://admin:SocBsEXyAAoVChKl@cluster0.fs9jz1r.mongodb.net/Opticals?retryWrites=true&w=majority&appName=Cluster0")
 .then(()=>console.log("Connected To Database"))

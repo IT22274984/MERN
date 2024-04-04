@@ -19,16 +19,16 @@ import {
     useEffect(() => {
       const fetchHandler = async () => {
         await axios
-          .get(`http://localhost:5000/prescription/${id}`)
+          .get(`http://localhost:5000/prescriptions/${id}`)
           .then((res) => res.data)
-          .then((data) => setInputs(data.Prescription));
+          .then((data) => setInputs(data.prescription));
       };
       fetchHandler();
     }, [id]);
   
     const sendRequest = async () => {
       await axios
-        .put(`http://localhost:5000/prescription/${id}`, {
+        .put(`http://localhost:5000/prescriptions/${id}`, {
           Sphere: Number(inputs.Sphere),
           Cylinder: Number(inputs.Cylinder),
           Axis: Number(inputs.Axis),
@@ -41,7 +41,7 @@ import {
     };
     const handleSubmit = (e) => {
       e.preventDefault();
-      sendRequest().then(() => history("/prescription"));
+      sendRequest().then(() => history("/prescriptions"));
     };
     const handleChange = (e) => {
       setInputs((prevState) => ({

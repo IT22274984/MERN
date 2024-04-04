@@ -3,23 +3,23 @@ import React, { useEffect, useState } from "react";
 import "./Prescription.css";
 import axios from "axios";
 import Prescription from "./Prescription";
-const URL = "http://localhost:5000/prescription";
+const URL = "http://localhost:5000/prescriptions";
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
 };
 const Prescriptions = () => {
-  const [prescription, setPrescriptions] = useState();
+  const [prescriptions, setPrescriptions] = useState();
   useEffect(() => {
-    fetchHandler().then((data) => setPrescriptions(data.prescription));
+    fetchHandler().then((data) => setPrescriptions(data.prescriptions));
   }, []);
-  console.log(prescription);
+  console.log(prescriptions);
   return (
     <div>
       <ul>
-        {prescription &&
-          prescription.map((Prescription, i) => (
+        {prescriptions &&
+          prescriptions.map((prescription, i) => (
             <li key={i}>
-              <Prescription Prescription={Prescription} />
+              <Prescription prescription={prescription} />
             </li>
           ))}
       </ul>
