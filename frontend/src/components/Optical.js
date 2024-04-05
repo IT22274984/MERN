@@ -1,19 +1,20 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Optical.css";
 import SearchIcon from '@mui/icons-material/Search';
 
 const Optical = (props) => {
-  const history = useNavigate();
+  const navigate = useNavigate(); // Renamed history to navigate
   const { _id, name, description, price, additional_information, image } = props.optical;
 
   const deleteHandler = async () => {
-    await axios
-      .delete(`http://localhost:5000/opticals/${_id}`)
-      .then((res) => res.data)
-      .then(() => history("/"))
-      .then(() => history("/opticals"));
+    try {
+      await axios.delete(`http://localhost:5000/opticals/${_id}`);
+      navigate("/opticals"); // Navigate to the /opticals route after deletion
+    } catch (error) {
+      console.error("Error deleting optical:", error);
+    }
   };
 
   return (
@@ -32,7 +33,7 @@ const Optical = (props) => {
         <h3>Rs {price}</h3>
         <p>{additional_information}</p>
         <div className="button-container">
-          <Button LinkComponent={Link} to={`/opticals/${_id}`} sx={{ mt: "auto" }}>
+          <Button component={Link} to={`/opticals/${_id}`} sx={{ mt: "auto" }}>
             Update
           </Button>
           <Button color="error" onClick={deleteHandler} sx={{ mt: "auto" }}>
