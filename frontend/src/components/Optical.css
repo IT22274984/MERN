@@ -1,0 +1,51 @@
+/* Optical.css */
+
+.optical-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+}
+
+.search-bar {
+  display: flex-end;
+  align-items: center;
+  margin-bottom: 20px; /* Add some margin */
+}
+
+.search-icon {
+  margin-right: 10px; /* Adjust spacing between icon and TextField */
+}
+
+.card {
+  /* Your card styles here */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 300px; /* Adjust width as needed */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Add some spacing between image and text */
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Add some spacing between buttons */
+}
+
+.button-container button {
+  width: 45%; /* Equal width for buttons */
+}
+
+/* Additional styles for TextField */
+.MuiFormControl-root {
+  width: 100%; /* Make TextField full width */
+}
