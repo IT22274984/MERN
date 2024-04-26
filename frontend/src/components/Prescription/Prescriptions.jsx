@@ -1,9 +1,11 @@
-//Prescriptions.js
+//sample/client/src/components/Prescription/Prescriptions.jsx
 import React, { useEffect, useState } from "react";
 import "./Prescription.css";
 import axios from "axios";
 import Prescription from "./Prescription";
-const URL = "http://localhost:5000/prescriptions";
+import Header from "../Header/Header";
+
+const URL = "http://localhost:8080/prescriptions";
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);
 };
@@ -15,6 +17,9 @@ const Prescriptions = () => {
   console.log(prescriptions);
   return (
     <div>
+      <header>
+        <Header/>
+       </header>
       <ul>
         {prescriptions &&
           prescriptions.map((prescription, i) => (

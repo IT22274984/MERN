@@ -1,18 +1,20 @@
-//AddPrescription.js
+// C:\Users\shant\OneDrive\Desktop\sampleProject\sample\client\src\components\AddPrescription\AddPrescription.jsx
 import {
     Button,
     Checkbox,
     FormControlLabel,
     FormLabel,
-    TextField,
-    Typography,
+    TextField,Dialog,DialogTitle,DialogContent,DialogContentText,DialogActions,
   } from "@mui/material";
   import { Box } from "@mui/system";
   import axios from "axios";
   import React, { useState } from "react";
   import { useNavigate } from "react-router-dom";
+  import "./AddPrescription.css";
+  import Header from "../Header/Header"
   
   const AddPrescription = () => {
+  
     const history = useNavigate();
     const [inputs, setInputs] = useState({
       Sphere: "",
@@ -21,21 +23,24 @@ import {
       PupilDistance: "",
       Lence: "",
       Description: "",
-      
     });
     const [checked, setChecked] = useState(false);
+    const [open, setOpen] = useState(false);
+
     const handleChange = (e) => {
       setInputs((prevState) => ({
         ...prevState,
         [e.target.name]: e.target.value,
       }));
-      // console.log(e.target.name, "Value", e.target.value);
     };
+
+    const [showMessage, setShowMessage] = useState(false);
+
   
     const sendRequest = async () => {
       await axios
-        .post("http://localhost:5000/prescriptions", {
-          Sphere: Number(inputs.Sphere),
+        .post("http://localhost:8080/prescriptions", {
+          Sphere: Number(inputs.Sphere ),
           Cylinder: Number(inputs.Cylinder),
           Axis: Number(inputs.Axis),
           PupilDistance: Number(inputs.PupilDistance),
@@ -43,28 +48,40 @@ import {
           Description: String(inputs.Description),
           available: Boolean(checked),
         })
-        .then((res) => res.data);
+        .then(() => {
+          setShowMessage(true);
+        });
     };
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(inputs, checked);
-      sendRequest().then(() => history("/prescriptions"));
+      if (inputs.Sphere.trim() === "" || inputs.Cylinder.trim() === "" || inputs.Axis.trim() === "" || inputs.PupilDistance.trim() === "" || inputs.Lence.trim() === "" || inputs.Description.trim() === "") {
+        alert("Please fill in all fields");
+        return;
+      }
+      setOpen(true);
+    };
+    
+  
+    const handleConfirm = () => {
+      sendRequest().then(() => {
+        setOpen(false);
+        history("/prescriptions");
+      });
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
     };
   
     return (
+      <div>
+        <header>
+        <Header/>
+       </header>
       <form onSubmit={handleSubmit}>
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent={"center"}
-          maxWidth={700}
-          alignContent={"center"}
-          alignSelf="center"
-          marginLeft={"auto"}
-          marginRight="auto"
-          marginTop={10}
-        >
+      {showMessage && <div className="message">Prescription Added</div>}
+        <Box className="formContainer">
           <FormLabel>Sphere</FormLabel>
           <TextField
             value={inputs.Sphere}
@@ -74,6 +91,7 @@ import {
             fullWidth
             variant="outlined"
             name="Sphere"
+            className="customTextField"
           />
           <FormLabel>Cylinder</FormLabel>
           <TextField
@@ -124,19 +142,38 @@ import {
             fullWidth
             variant="outlined"
             name="Description"
+            className="descriptionTextField"
           />
           <FormControlLabel
             control={
-              <Checkbox checked={checked} onChange={() => setChecked(!checked)} />
+              <Checkbox
+                checked={checked}
+                onChange={() => setChecked(!checked)}
+              />
             }
-            label="Available"
+            label="CONFIRM"
+            className="checkbox"
           />
   
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" className="submitButton">
             Add Prescription
           </Button>
         </Box>
       </form>
+
+<Dialog open={open} onClose={handleClose}>
+<DialogTitle>Confirm</DialogTitle>
+<DialogContent>
+  <DialogContentText>
+    Are you sure you want to add this prescription?
+  </DialogContentText>
+</DialogContent>
+<DialogActions>
+  <Button onClick={handleClose}>Cancel</Button>
+  <Button onClick={handleConfirm}>Confirm</Button>
+</DialogActions>
+</Dialog>
+</div>
     );
   };
   

@@ -1,35 +1,40 @@
-// App.js
-import Header from "./component/Header";
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Home from "./component/Home";
-import AddPrescription from "./component/AddPrescription";
-import Prescriptions from "./component/Prescription/Prescriptions";
-import About from "./component/About";
-import PrescriptionDetail from "./component/Prescription/PrescriptionDetail";
+//C:\Users\shant\OneDrive\Desktop\sample\client\src\App.js
+import { Route, Routes, Navigate } from "react-router-dom";
+import OMain from "./components/OMain";
+import OSignup from "./components/OSingup";
+import OLogin from "./components/OLogin";
+import CMain from "./components/CMain";
+import CSignup from "./components/CSingup";
+import CLogin from "./components/CLogin";
+import AddPrescription from "./components/AddPrescription/AddPrescription"
+import Prescriptions from "./components/Prescription/Prescriptions";
+import PrescriptionDetail from "./components/Prescription/PrescriptionDetail";
+import CPrescriptions from "./components/Prescription/CPrescriptions";
+
+
 function App() {
-  return (
-    <React.Fragment>
-      <header>
-        <Header />
-      </header>
-      <main>
-        <Routes>
-        <Route path="/" element={<Home />} exact />
-          <Route path="/add" element={<AddPrescription />} exact />
-          <Route path="/prescriptions" element={<Prescriptions />} exact />
-          <Route path="/about" element={<About />} exact />
-          <Route path="/prescriptions/:id" element={<PrescriptionDetail />} exact /> 
-        </Routes>
-      </main>
-    </React.Fragment>
-  );
+	const user = localStorage.getItem("token");
+	const customer = localStorage.getItem("token");
+
+	return (
+		<Routes>
+			{user && <Route path="/" exact element={<OMain />} />}
+			<Route path="/Osignup" exact element={<OSignup />} />
+			<Route path="/Ologin" exact element={<OLogin />} />
+			<Route path="/" element={<Navigate replace to="/Ologin" />} />
+			{customer && <Route path="/CustomerHome" exact element={<CMain />} />}
+			<Route path="/Csignup" exact element={<CSignup />} />
+			<Route path="/Clogin" exact element={<CLogin />} />
+			<Route path="/CustomerHome" element={<Navigate replace to="/Clogin" />} />
+			<Route path="/add" element={<AddPrescription />} />
+			<Route path="/prescriptions" element={<Prescriptions />} exact />
+			<Route path="/prescriptions/:id" element={<PrescriptionDetail />} exact /> 
+			<Route path="/Cprescriptions" element={<CPrescriptions />} exact />
+
+		</Routes>
+
+		
+	);
 }
 
 export default App;
-
-/* <Route path="" element={<Home />} exact />
-          <Route path="" element={<AddBook />} exact />
-          <Route path="" element={<Books />} exact />
-          <Route path="" element={<About />} exact />
-          <Route path="" element={<BookDetail />} exact /> */
