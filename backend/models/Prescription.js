@@ -1,3 +1,4 @@
+//C:\Users\shant\OneDrive\Desktop\sampleProject\sample\server\models\Prescription.js
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;

@@ -1,6 +1,7 @@
+//C:\Users\shant\OneDrive\Desktop\sampleProject\sample\server\routes\prescription-routes.js
 const express = require("express");
 const router = express.Router();
-const Prescription = require("../model/Prescription");
+const Prescription = require("../models/Prescription");
 const prescriptionsController = require("../controllers/prescriptions-controller");
 
 

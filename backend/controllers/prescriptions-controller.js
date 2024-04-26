@@ -1,4 +1,5 @@
-const Prescription = require("../model/Prescription");
+//C:\Users\shant\OneDrive\Desktop\sampleProject\sample\server\controllers\prescriptions-controller.js
+const Prescription = require("../models/Prescription");
 
 const getAllPrescriptions = async (req, res, next) => {
   let prescriptions;
