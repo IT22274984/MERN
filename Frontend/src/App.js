@@ -1,14 +1,17 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import AddTask from "./components/AddTask";
-import Container from "./../node_modules/react-bootstrap/esm/Container";
-import { Row,Col } from "react-bootstrap";
-import TasksList from "./components/TasksList";
-import Pages from "./Pages";
+import Pages from "./Pages"; 
+import PageFAQ from "./PageFAQ"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  return <Pages/>
+  return (
+    <>
+      <ToastContainer />
+      <Pages />
+      {/* <PageFAQ/> */}
+    </>
+  );
 }
 
 export default App;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ListRow from "../FAQadditionals/ListRow";
 import Modal from "../components/Modal/Modal";
-import FaqService from "../services/FaqService";
+// import FaqService from "../services/FaqService";
 import { toast } from "react-toastify";
-import Faq from "../Faq.css"
+// import Faq from "../Faq.css"
 
 const ManageFAQ = ({ changeCount, setChangeCount }) => {
   const [modalActive, setModalActive] = useState(false);

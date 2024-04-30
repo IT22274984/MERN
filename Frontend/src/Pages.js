@@ -7,13 +7,14 @@ import Admin from "./Pages/Admin";
 import Home from "./Pages/Home"
 
 export default function Pages() {
+  
   return (
     <Router>
       <Routes>
         <Route path="/eticket" element={<Eticket />}/>
         <Route path="/admin" element={<Admin/>}/>
-        <Route path="*" element={<NotFound />}/>
         <Route path="/" element={<Home/>}/>
+        <Route path="*" element={<NotFound />}/>
       </Routes>
     </Router>
   );
