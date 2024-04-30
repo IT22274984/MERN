@@ -1,0 +1,146 @@
+.payment-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(46, 204, 113, 0.4); /* Updated shadow with green color */
+  }
+  
+  .payment-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .payment-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .payment-input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .payment-btn {
+    width: 100%;
+    height: 40px;
+    background-color: #416c58; /* Updated to a dark blue color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .payment-btn:hover {
+    background-color: #416c58; /* Updated to a darker shade of blue */
+  }
+  
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .payment-table th,
+  .payment-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .payment-table th {
+    background-color: #416c58;
+    color: #fff;
+  }
+  
+  .payment-table td {
+    text-align: center;
+  }
+  
+  .payment-link {
+    color: #416c58;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .payment-btn-delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .payment-btn-delete:hover {
+    color: #ff0000;
+  }
+
+  .premium-btn  {
+    display: inline-block;
+    padding: 8px 16px; /* Adjusted padding */
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3f434a; /* Blue color */
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .premium-btn:hover  {
+    background-color: #9fd2e9; /* Darker blue on hover */
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    padding: 12px; /* Adjust padding as needed */
+    height: 40px; /* Set the height to match the button */
+    border-radius: 20px; /* Rounded corners */
+    border: 1px solid #ccc; /* Add a border for clarity */
+    flex: 1; /* Allow the input to grow */
+    transition: border-color 0.3s ease;
+    font-size: 16px;
+  }
+  
+  .search-input:focus {
+    border-color: #427e6a; /* Change border color on focus */
+  }
+  
+  .search-button {
+    background-color: #427e6a; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 20px; /* Match the padding with the input */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  }
+  
+  .search-button:hover {
+    background-color: #427e6a; /* Darker green on hover */
+  }
+  .header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
