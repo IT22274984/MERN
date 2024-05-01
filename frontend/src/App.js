@@ -1,8 +1,8 @@
 import React from 'react'
-import Page from './Page'
+import Pages from './Pages'
 
 export default function () {
   return (
-    <div><Page></Page></div>
+    <div><Pages></Pages></div>
   )
 }

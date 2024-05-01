@@ -1,13 +1,10 @@
 const express = require('express');
 require('dotenv').config()
 const app = express();
-const taskRout = require('./routes/taskRoute')
+const taskRout = require('./routes/cardRoute')
+const payment = require('./routes/PaymentRoutes/PaymentRouter')
 const mongoose = require('mongoose')
 var cors = require('cors')
-
-//app.get("/", (req, res) => {
-//  res.send("Hello dilli");
-//})
 
 // Middleware
 app.use(cors())
@@ -25,4 +22,5 @@ mongoose.connect(process.env.MONGO_URI)
     })
     .catch((error) => console.log(error));
 
+    app.use("/server/payment", payment)
     app.use("/api/card", taskRout)

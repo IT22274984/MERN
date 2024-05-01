@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import Button from 'react-bootstrap/Button'; // Import Button from react-bootstrap
-import logo from '../Logo.jpg'
+import Button from 'react-bootstrap/Button';
+import Chart from 'chart.js/auto'; // Import Chart from Chart.js
+import logo from '../Logo.jpg';
 
 const Paytable = () => {
   const [userProfiles, setUserProfiles] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const chartRef = useRef(null); // Reference to the chart instance
 
   useEffect(() => {
     // Fetch user profile data
@@ -31,6 +33,43 @@ const Paytable = () => {
     setFilteredProfiles(filtered);
   }, [searchQuery, userProfiles]);
 
+  useEffect(() => {
+    if (filteredProfiles.length > 0) {
+      renderChart();
+    }
+  }, [filteredProfiles]); // Re-render chart when filteredProfiles changes
+
+  const renderChart = () => {
+    if (chartRef.current !== null) {
+      chartRef.current.destroy(); // Destroy previous chart instance
+    }
+
+    const ctx = document.getElementById('paymentChart');
+    const labels = filteredProfiles.map(profile => new Date(profile.createdAt).toLocaleDateString());
+    const amounts = filteredProfiles.map(profile => parseFloat(profile.amount));
+
+    chartRef.current = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Amount',
+          data: amounts,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  };
+
   const confirmDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this payment profile?')) {
       handleDelete(id);
@@ -45,19 +84,20 @@ const Paytable = () => {
       })
       .catch((err) => console.log(err));
   };
+
   const generateReport = () => {
     const doc = new jsPDF();
-  
+    
     // Premium styling for the title
     doc.setTextColor(61, 90, 128); // Title color
     doc.setFontSize(24); // Title font size
     doc.text("Payment Report", 105, 20, null, null, "center"); // Title centered
-  
+    
     // Styling for the generated date
     doc.setTextColor(100); // Generated date color
     doc.setFontSize(12); // Generated date font size
     doc.text(`Generated on: ${new Date().toLocaleString()}`, 105, 30, null, null, "center"); // Generated date centered
-  
+    
     // Generate table
     const tableRows = [];
     let totalPaymentLKR = 0; // Initialize total payment in LKR
@@ -81,7 +121,7 @@ const Paytable = () => {
         lowestPayment = amount; // Update lowest payment if necessary
       }
     });
-  
+    
     // Add table to PDF
     doc.autoTable({
       head: [['No', 'Name', 'Email', 'Amount', 'Date']],
@@ -103,28 +143,34 @@ const Paytable = () => {
         textColor: [61, 90, 128] // Body text color for premium look
       },
     });
-  
+    
     // Convert total payment to LKR
     const exchangeRate = 0.0047; // 1 USD = 225 LKR (example exchange rate)
     const totalPaymentUSD = totalPaymentLKR / exchangeRate;
-  
+    
     // Calculate and display total payment in LKR
     const startY = doc.previousAutoTable.finalY + 10; // Start position below the table
     doc.text(`Total Payment (LKR): ${totalPaymentLKR.toFixed(2)}`, 14, startY);
-  
+    
     // Display summary of highest and lowest payments
     doc.text(`Highest Payment(LKR): ${highestPayment.toFixed(2)}`, 14, startY + 20);
     doc.text(`Lowest Payment(LKR): ${lowestPayment.toFixed(2)}`, 14, startY + 30);
-  
+    
+    // Draw chart
+    const chartImgData = chartRef.current.toBase64Image();
+    const imgHeight = 100;
+    const imgWidth = (chartRef.current.width * imgHeight) / chartRef.current.height;
+    doc.addImage(chartImgData, 'JPEG', 10, startY + 50, imgWidth, imgHeight);
+    
     // Save PDF
     doc.save('Payment_Report.pdf');
   };
   
+
   return (
     <div className="paytable-container">
       <header className="header">
-      <img src={logo} alt="Your image description" style={{ width: '100px', height: 'auto' }} />
-
+        <img src={logo} alt="Your image description" style={{ width: '100px', height: 'auto' }} />
         <nav className="nav-bar">
           <a href="http://localhost:3000/home">Home</a>
           <a href="/all-pay-details">All Pay details</a>
@@ -167,7 +213,10 @@ const Paytable = () => {
           ))}
         </tbody>
       </table>
-      <Button variant="primary" onClick={generateReport}>Download PAY Report</Button> {/* Generate Report button */}
+      <div className="chart-container">
+        <canvas id="paymentChart"></canvas>
+      </div>
+      <Button variant="primary" onClick={generateReport}>Download PAY Report</Button>
     </div>
   );
 };
