@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 import Prescriptions from "../Prescription/Prescriptions";
 import Header from "../Header/Header"
 import img from '../../assets/logo.png'
+import img1 from '../../assets/test.png'
+import img2 from '../../assets/number.jpg'
+
 
 const OptometristHome = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [showPrescriptions, setShowPrescriptions] = useState(false);
-
+  const [isPresent, setIsPresent] = useState(false);
 
     const handleSearch = async () => {
         try {
@@ -33,9 +36,10 @@ const OptometristHome = () => {
     useEffect(() => {
       const details = localStorage.getItem("signupDetails");
       if (details) {
-          setSignupDetails(JSON.parse(details));
+        setSignupDetails(JSON.parse(details));
       }
-  }, []);
+    }, []);
+    
 
     const navigate = useNavigate();
     const handleUploadReport = () => {
@@ -45,36 +49,83 @@ const OptometristHome = () => {
 
     const handleViewReports = () => {
       // Handle view reports logic
-      navigate('/prescriptions');
+      navigate('/prescriptions',{ state: { customer: selectedCustomer } });
   };
+
+  const handleMarkAttendance = () => {
+    // Update attendance status
+    setIsPresent(true);
+  };
+
  
   return (
     <div className="optometristhome">
-      
+      <div>
        <header>
         <Header/>
        </header>
+       </div>
+
+      <main>
       <div className="component">
-        
-        <b className="mark-attendance">Mark Attendance</b>
-        <div className="confirm-your-present">{`Confirm  your present ,it’s easy to calculate presents. `}</div>
-        <div className="component-item" />
-        <div className="confirm">Confirm</div>
+      <b className="mark-attendance">Mark Attendance</b>
+          <div className="confirm-your-present">{`Confirm your present, it’s easy to calculate presents.`}</div>
+          <div className="component-item" />
+          {isPresent ? (
+            <div className="attendance-marked">Attendance Marked!</div>
+            
+          ) : (
+            <button className="confirm" onClick={handleMarkAttendance}>Mark Attendance</button>
+          )}
+          
+          <img className="number" alt="" src={img2} />
       </div>
+      </main>
+      <img className="test" alt="" src={img1} />
+      
       
       
       
       <div className="search-button">
       {signupDetails && (
         <div className="signup-details">
-          <h2>Optometrist Signup Details</h2>
-          <p>First Name: {signupDetails.firstName}</p>
-          <p>Last Name: {signupDetails.lastName}</p>
+          <h2>Optometrist  Details</h2>
+          <p> Name: {signupDetails.firstName} {signupDetails.lastName}</p>
           <p>Email: {signupDetails.email}</p>
         </div>
       )}
       </div>
       
+      
+
+      <div className="group-parent1">
+        <div className="rectangle-parent1">
+          
+          <div className="search">
+          <input
+                            type="text"
+                            placeholder="Search by customer name"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button onClick={handleSearch}>Search</button>                  
+{selectedCustomer && (
+  <div className="customer-details">
+    <h2>Customer Details</h2>
+    <p>Name: {selectedCustomer.firstName} {selectedCustomer.lastName}</p>
+    <p>Email: {selectedCustomer.email}</p>
+    <button onClick={handleUploadReport}>Upload Prescription</button>
+    <button onClick={handleViewReports}>Prescription Reports</button>
+    <img className="option" alt="" src={img} />
+  </div>
+)}
+{showPrescriptions && <Prescriptions />}
+
+        </div>
+        </div> 
+      </div>
+
+      <footer>
       <div className="footer">
         <div className="maps-location-parent">
           <b className="maps-location">Maps Location</b>
@@ -129,32 +180,8 @@ const OptometristHome = () => {
         <img className="footer-inner" alt="" src="/frame-3.svg" />
         <div className="copyright2024icare">Copyright@2024ICare</div>
       </div>
-      <div className="group-parent1">
-        <div className="rectangle-parent1">
-          
-          <div className="search">
-          <input
-                            type="text"
-                            placeholder="Search by customer name"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        <button onClick={handleSearch}>Search</button>                  
-{selectedCustomer && (
-  <div className="customer-details">
-    <h2>Customer Details</h2>
-    <p>Name: {selectedCustomer.firstName} {selectedCustomer.lastName}</p>
-    <p>Email: {selectedCustomer.email}</p>
-    <button onClick={handleUploadReport}>Upload Prescription</button>
-    <button onClick={handleViewReports}>Prescription Reports</button>
-  </div>
-)}
-{showPrescriptions && <Prescriptions />}
+      </footer>
 
-        </div>
-        </div>
-        
-      </div>
     </div>
   );
 };

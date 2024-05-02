@@ -16,30 +16,31 @@
   white-space: pre-wrap;
   display: inline-block;
 }
-.component-item {
-  position: absolute;
-  height: 16.43%;
-  width: 34.9%;
-  top: 61.47%;
-  right: 32.55%;
-  bottom: 22.1%;
-  left: 32.55%;
-  border-radius: 25px;
-  background-color: #307172;
-}
+
 .confirm {
   position: absolute;
-  top: 64.59%;
-  left: 39.61%;
+  top: 66.59%;
+  left: 37.61%;
   color: #fff;
+  background-color:#307172 ;
+  height: 40px;
+  border-radius: 30%;
 }
 .component {
   position: absolute;
-  top: 341px;
-  left: 183px;
+  top: 454px;
+  left: 233px;
   width: 467px;
   height: 353px;
   font-size: 24px;
+  
+}
+.attendance-marked{
+  -webkit-text-fill-color: #ef1c20;
+  position: absolute;
+  top: 190px;
+  left: 110px;
+  
 }
 
 /*above are attendance*/
@@ -341,12 +342,11 @@
 }
 .footer {
   position: absolute;
-  top: 836px;
+  top: 977px;
   left: 0;
   background-color: #4270a2;
   width: 1440px;
   height: 188px;
-  overflow: hidden;
   font-size: 16px;
   color: #fff;
   font-family: Roboto;
@@ -360,14 +360,7 @@
   width: 300px;
   height: 49px;
 }
-.search {
-  position: absolute;
-  top: 18px;
-  left: 28.1px;
-  display: inline-block;
-  width: 144.4px;
-  height: 14.3px;
-}
+
 .rectangle-parent1 {
   position: absolute;
   top: calc(50% - 25px);
@@ -393,31 +386,28 @@
 }
 .optometristhome {
   width: 100%;
-  position: relative;
   background-color: #fff;
-  height: 1024px;
-  overflow: hidden;
   text-align: left;
   font-size: 28px;
   color: #000;
   font-family: Poppins;
 }
 
-
+.search {
+  position:absolute;
+  margin-top:210px;
+}
 
 .search-button {
   position: absolute;
-  top: 65px;
-  left: 1068px;
-  width: 144px;
+  top: 195px;
+  left: 80px;
+  width: 444px;
   height: 65px;
-  
-  color: #fff;
-  
-  padding: 8px 10px;
+  color: #7138a3;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  
 }
 
 .search-button button {
@@ -441,9 +431,44 @@
   margin-right: 10px; /* Add margin-right for spacing between buttons */
 }
 
- .customer-details button {
+.search button {
+  background-color: #056156; /* Blue color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.customer-details {
+  margin-top: 30px;
+  margin-left: -9px;
+  padding: 20px;
+  border: 1px solid #efebeb;
+  border-radius: 5px;
+  background-color: #f0f5fa; /* Light gray background */
+}
+
+.customer-details,.option{
+  float: right ;
+}
+
+.customer-details h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.customer-details p {
+  margin: 5px 0;
+}
+
+.customer-details button {
   margin-top: 10px;
-  
+  padding: 10px 20px;
+  background-color: #056156; /* Blue color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .search input::placeholder {
@@ -461,4 +486,24 @@
   background-color: #8cc2bd;
 }
 
- 
+.test {
+  padding: 0px;
+  float: right;
+  box-shadow: 0 0 5px rgba(221, 220, 220, 0.1);
+  width: 250px;
+  height:370px;
+  border-radius: 40%; 
+  
+}
+
+.number {
+  top: 0px;
+  padding:10px 0px;
+  float: right ;
+  box-shadow: 0 0 5px rgba(221, 220, 220, 0.1);
+  width: 1500px; /* Change fixed width to auto */
+  height: 700px; /* Change fixed height to auto */
+  border-radius: 50%;
+  clear: both; /* Move the image below the floated content */
+}
+
