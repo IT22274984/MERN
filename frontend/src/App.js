@@ -1,16 +1,12 @@
-import "./App.css";
-import Pages from "./Pages"; 
-import PageFAQ from "./PageFAQ"
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import Page from "./Pages/Page";
+import Pages from "./Pages/Page";
 
 function App() {
   return (
-    <>
-      <ToastContainer />
-      <Pages />
-      {/* <PageFAQ/> */}
-    </>
+    <Router>
+      <Page />
+    </Router>
   );
 }
 
