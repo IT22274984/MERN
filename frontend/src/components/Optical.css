@@ -1,51 +1,70 @@
-/* Optical.css */
-
 .optical-container {
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
-}
-
-.search-bar {
-  display: flex-end;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px; /* Add some margin */
-}
-
-.search-icon {
-  margin-right: 10px; /* Adjust spacing between icon and TextField */
+  flex-direction: column;
+  margin-top: 50px;
 }
 
 .card {
-  /* Your card styles here */
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 300px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   padding: 20px;
-  max-width: 300px; /* Adjust width as needed */
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #dfe0e3;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex; /* Add this line */
+  flex-direction: column; /* Change from row to column */
 }
 
 .card img {
   width: 100%;
   height: auto;
-  border-radius: 5px;
-  margin-bottom: 10px; /* Add some spacing between image and text */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  flex: 1; /* Add this line */
 }
 
-.card h3 {
-  margin-top: 0;
-}
 
 .button-container {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px; /* Add some spacing between buttons */
+  gap: 10px; /* Adjust this value as needed */
+  justify-content: center; /* Align buttons horizontally in the center */
+  margin-top: 20px; /* Add spacing between buttons and content */
 }
 
-.button-container button {
-  width: 45%; /* Equal width for buttons */
+
+.pdf-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-/* Additional styles for TextField */
-.MuiFormControl-root {
-  width: 100%; /* Make TextField full width */
+.pdf-button-container button {
+  width: 85px;
+  height: 40px;
+  margin: 0 10px;
+  padding: 10px 24px;
+  font-size: 11px;
+  border-radius: 5px;
+  background-color: #2f78dd;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.pdf-button-container button:hover {
+  background-color: #9d90d3;
+}
+
+.pdf-button-container button.error {
+  background-color: #8c7978;
+}
+
+.pdf-button-container button.error:hover {
+  background-color: #c5b7b7;
 }

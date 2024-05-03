@@ -1,5 +1,4 @@
 const Optical = require("../models/optical");
-
 const getAllOpticals = async (req, res, next) => {
   try {
     const opticals = await Optical.find();
@@ -28,7 +27,7 @@ const getById = async (req, res, next) => {
 };
 
 const addOptical = async (req, res, next) => {
-  const { name, description, price, available, additional_information, image } = req.body;
+  const { name, description, price, available, additional_information,availableQuantity, image } = req.body;
   try {
     const optical = new Optical({
       name,
@@ -36,6 +35,7 @@ const addOptical = async (req, res, next) => {
       price,
       available,
       additional_information,
+      availableQuantity,
       image,
     });
     await optical.save();
@@ -48,7 +48,7 @@ const addOptical = async (req, res, next) => {
 
 const updateOptical = async (req, res, next) => {
   const id = req.params.id;
-  const { name, description, price, available, additional_information, image } = req.body;
+  const { name, description, price, available, additional_information,availableQuantity, image } = req.body;
   try {
     const optical = await Optical.findByIdAndUpdate(id, {
       name,
@@ -56,6 +56,7 @@ const updateOptical = async (req, res, next) => {
       price,
       available,
       additional_information,
+      availableQuantity,
       image,
     }, { new: true });
     if (!optical) {
@@ -80,6 +81,18 @@ const deleteOptical = async (req, res, next) => {
     console.error(err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
+};
+// Function to check if product quantity is low and send notification to manager
+const checkLowProductQuantity = (optical) => {
+  if (optical.availableQuantity < 200) {
+    sendNotificationToManager(`Low quantity alert: ${optical.name}`, `Product "${optical.name}" has a low quantity (${optical.availableQuantity}). Please restock.`);
+  }
+};
+
+// Mock function to simulate sending notification to manager
+const sendNotificationToManager = (subject, message) => {
+  console.log(`Notification to Manager: ${subject} - ${message}`);
+  // Here you can implement the actual logic to send notification to manager (e.g., via email, SMS, or push notification)
 };
 
 

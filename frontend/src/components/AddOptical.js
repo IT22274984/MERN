@@ -1,14 +1,14 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Checkbox,
   FormControlLabel,
-  FormLabel,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const AddOptical = () => {
   const history = useNavigate();
@@ -18,6 +18,7 @@ const AddOptical = () => {
     price: "",
     additional_information: "",
     image: "",
+    availableQuantity: "",
   });
   const [checked, setChecked] = useState(false);
 
@@ -38,7 +39,9 @@ const AddOptical = () => {
         image: String(inputs.image),
         additional_information: String(inputs.additional_information),
         available: Boolean(checked),
+        availableQuantity: parseInt(inputs.availableQuantity),
       });
+      alert("Optical successfully added");
       return response.data;
     } catch (error) {
       console.error("Error:", error);
@@ -49,82 +52,124 @@ const AddOptical = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(inputs, checked);
-      await sendRequest();
+      // Basic validation
+      if (!inputs.name || !inputs.description || !inputs.price || !inputs.image || !inputs.availableQuantity) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+      if (isNaN(Number(inputs.price)) || isNaN(Number(inputs.availableQuantity))) {
+        alert("Price and Available Quantity must be numeric values.");
+        return;
+      }
+      
+      // Custom validation for available quantity
+      if (parseInt(inputs.availableQuantity) < 200) {
+        alert("Available quantity must be at least 200.");
+        return;
+      }
+      
+      const addedOptical = await sendRequest();
+      
+      // Check if available quantity is less than 10
+      if (addedOptical.availableQuantity < 10) {
+        const message = `Product "${addedOptical.name}" has a low quantity (${addedOptical.availableQuantity}). Please check.`;
+        alert(message);
+      }
+    
       history("/opticals"); // Use history as a function to navigate
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
+  
+  
   return (
-    <form onSubmit={handleSubmit}>
+    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="center"
-        maxWidth={700}
-        alignContent="center"
-        alignSelf="center"
-        marginLeft="auto"
-        marginRight="auto"
-        marginTop={10}
+        alignItems="center"
+        maxWidth={600}
+        margin="auto"
+        padding={4}
+        boxShadow={3}
+        borderRadius={8}
+        bgcolor="white"
       >
-        <FormLabel>Name</FormLabel>
-        <TextField
-          value={inputs.name}
-          onChange={handleChange}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          name="name"
-        />
-        <FormLabel>Description</FormLabel>
-        <TextField
-          value={inputs.description}
-          onChange={handleChange}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          name="description"
-        />
-        <FormLabel>Price</FormLabel>
-        <TextField
-          value={inputs.price}
-          onChange={handleChange}
-          type="number"
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          name="price"
-        />
-        <FormLabel>Additional Information</FormLabel>
-        <TextField
-          value={inputs.additional_information}
-          onChange={handleChange}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          name="additional_information"
-        />
-        <FormLabel>Image</FormLabel>
-        <TextField
-          value={inputs.image}
-          onChange={handleChange}
-          margin="normal"
-          fullWidth
-          variant="outlined"
-          name="image"
-        />
-        <FormControlLabel
-          control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />}
-          label="Available"
-        />
-        <Button variant="contained" type="submit">
-          Add Optical
-        </Button>
+        <Typography variant="h4" style={{ fontWeight: 700, fontFamily: 'Arial, sans-serif' }}>Add New Optical</Typography>
+        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+          <TextField
+            label="Name"
+            value={inputs.name}
+            onChange={handleChange}
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="name"
+          />
+          <TextField
+            label="Description"
+            value={inputs.description}
+            onChange={handleChange}
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="description"
+          />
+          <TextField
+            label="Price"
+            value={inputs.price}
+            onChange={handleChange}
+            type="number"
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="price"
+          />
+          <TextField
+            label="Additional Information"
+            value={inputs.additional_information}
+            onChange={handleChange}
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="additional_information"
+          />
+          <TextField
+            label="Image URL"
+            value={inputs.image}
+            onChange={handleChange}
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="image"
+          />
+          <TextField
+            label="Available Quantity"
+            value={inputs.availableQuantity}
+            onChange={handleChange}
+            type="number"
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="availableQuantity"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />}
+            label="Available"
+          />
+          <Button
+            variant="contained"
+            type="submit"
+            style={{ marginTop: 20, width: "100%" }}
+            color="primary"
+          >
+          
+            Add Optical
+          </Button>
+        </form>
       </Box>
-    </form>
+    </Box>
   );
 };
 

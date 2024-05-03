@@ -1,14 +1,10 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  FormLabel,
-  TextField,
-} from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Box, Button, Checkbox, FormControlLabel, FormLabel, TextField } from "@mui/material";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const OpticalDetail = () => {
   const [inputs, setInputs] = useState({
@@ -20,14 +16,12 @@ const OpticalDetail = () => {
   });
   const [checked, setChecked] = useState(false);
   const { id } = useParams();
-  const history = useNavigate();
 
   useEffect(() => {
     const fetchHandler = async () => {
       try {
         const { data } = await axios.get(`http://localhost:5000/opticals/${id}`);
         const opticalData = data.optical;
-        // Convert price to a number
         opticalData.price = parseFloat(opticalData.price);
         setInputs(opticalData);
         setChecked(opticalData.available);
@@ -40,15 +34,37 @@ const OpticalDetail = () => {
 
   const sendRequest = async () => {
     try {
+      // Validate available quantity
+      console.log("Available Quantity:", inputs.availableQuantity);
+      if (parseInt(inputs.availableQuantity) < 200) {
+        console.log("Validation Failed: Available quantity must be at least 200.");
+        toast.error("Available quantity must be at least 200.", {
+          position: "top-center",
+          autoClose: 50000 // 30 seconds in milliseconds
+        });
+        
+        return; // Exit function if validation fails
+      }
+  
+      // If validation passes, proceed with the request
       await axios.put(`http://localhost:5000/opticals/${id}`, {
         ...inputs,
         available: checked,
       });
-      history("/opticals");
+      toast.success("Optical updated successfully!", {
+        position: "top-center",
+        autoClose: 50000 // 30 seconds in milliseconds
+      });
+      
     } catch (error) {
       console.error("Error updating optical:", error);
+      toast.error("Error updating optical. Please try again.", {
+        position: "top-center"
+      });
     }
   };
+  
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,6 +75,9 @@ const OpticalDetail = () => {
   };
 
   return (
+    <div>
+    <ToastContainer position="top-center" /> {/* Set position to top-center */}
+
     <div>
       {inputs && (
         <form onSubmit={sendRequest}>
@@ -107,6 +126,16 @@ const OpticalDetail = () => {
               variant="outlined"
               name="additional_information"
             />
+            <FormLabel>Available Quantity</FormLabel>
+            <TextField
+            value={inputs.availableQuantity}
+            onChange={handleChange}
+            type="number"
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="availableQuantity"
+          />
             <FormLabel>Image</FormLabel>
             <TextField
               value={inputs.image}
@@ -116,7 +145,6 @@ const OpticalDetail = () => {
               variant="outlined"
               name="image"
             />
-
             <FormControlLabel
               control={
                 <Checkbox
@@ -132,6 +160,7 @@ const OpticalDetail = () => {
           </Box>
         </form>
       )}
+    </div>
     </div>
   );
 };

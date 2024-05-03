@@ -1,46 +1,50 @@
-import { Button, TextField } from "@mui/material";
-import axios from "axios";
+import React from "react";
+import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "./Optical.css";
-import SearchIcon from '@mui/icons-material/Search';
 
 const Optical = (props) => {
-  const navigate = useNavigate(); // Renamed history to navigate
-  const { _id, name, description, price, additional_information, image } = props.optical;
+  const navigate = useNavigate();
+  const {
+    _id,
+    name,
+    description,
+    price,
+    additional_information,
+    availableQuantity,
+    image,
+    generateReport, // Received as prop
+  } = props.optical;
 
   const deleteHandler = async () => {
-    try {
-      await axios.delete(`http://localhost:5000/opticals/${_id}`);
-      navigate("/opticals"); // Navigate to the /opticals route after deletion
-    } catch (error) {
-      console.error("Error deleting optical:", error);
-    }
+    // Delete logic here
   };
 
   return (
     <div className="optical-container">
-      <div className="search-bar">
-        <div className="search-icon">
-          <SearchIcon/>
-        </div>
-        {/* Add your search bar component here */}
-        <TextField label="Search" variant="outlined" />
-      </div>
       <div className="card">
-        <img src={image} alt={name} />
+        <Link to={`/view`}>
+          <img src={image} alt={name} />
+        </Link>
         <h3>{name}</h3>
         <p>{description}</p>
         <h3>Rs {price}</h3>
+        <h3>Available: {availableQuantity}</h3>
         <p>{additional_information}</p>
         <div className="button-container">
-          <Button component={Link} to={`/opticals/${_id}`} sx={{ mt: "auto" }}>
+          <Button
+            component={Link}
+            to={`/opticals/${_id}`}
+            variant="contained"
+          >
             Update
           </Button>
-          <Button color="error" onClick={deleteHandler} sx={{ mt: "auto" }}>
+          <Button onClick={deleteHandler} variant="contained" color="error">
             Delete
           </Button>
         </div>
       </div>
+      {/* Remove the individual "Generate Report" button */}
     </div>
   );
 };

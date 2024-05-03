@@ -27,6 +27,11 @@ const opticalSchema = new Schema({
         type:String,
         reequired:true,
     },
+    availableQuantity:{
+        type: String,
+        reequired:true
+    },
+   
 });
 module.exports = mongoose.model("optical",opticalSchema);
 //opticals

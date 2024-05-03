@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = ({ favorites }) => {
+const C_About = ({ favorites }) => {
   const styles = {
     opticalContainer: {
       maxWidth: "800px",
@@ -42,11 +42,11 @@ const About = ({ favorites }) => {
   return (
     <div style={styles.opticalContainer}>
       <h1 style={styles.center}>
-        <b>Cart</b>
+        <b>Cart</b><br/>
       </h1>
       <div style={styles.sunglassImages}>
         {favorites.length === 0 ? (
-          <p style={styles.center}>No sunglasses added to favorites yet.</p>
+         <center> <h3><p style={styles.center}>No opticals added to favorites yet.</p></h3></center>
         ) : (
           favorites.map((sunglass, index) => (
             <div key={index} style={styles.sunglassImage} className="sunglass-image">
@@ -63,4 +63,4 @@ const About = ({ favorites }) => {
   );
 };
 
-export default About;
+export default C_About;
