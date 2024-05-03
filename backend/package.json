@@ -2,10 +2,10 @@
   "name": "hms-backend",
   "version": "1.0.0",
   "description": "HMS Backend",
-  "main": "app.js",
+  "main": "Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon Server.js"
   },
   "keywords": [
     "HMS"
