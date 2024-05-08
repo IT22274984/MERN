@@ -4,7 +4,7 @@ import Response from '../components/Responce'
 import { useParams } from 'react-router-dom';
 import ManageFAQ from '../FAQPage/ManageFAQ';
 import Navbaradmin from '../components/Navbaradmin'
-import "../App.css";
+import "../css/Eticket.css";
 
 
 export default function Admin() {

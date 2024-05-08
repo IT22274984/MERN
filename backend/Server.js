@@ -33,3 +33,31 @@ mongoose
 
 app.use("/api/tasks", taskRoutes);
 app.use("/api/faq", faqRoute);
+
+// FAQs
+// const PORT = config.get('port_2') || 5000;
+
+// app.use(cors(
+//   {
+//     credentials: true,
+//     origin: config.get('client_url')
+//   }
+// ));
+// app.use(express.json());
+// app.use('/api', require('./router/index'));
+
+// const start = async () => {
+//   try {
+//     await mongoose.connect(process.env.DB_URL, {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true
+//     });
+//     app.listen(PORT_2, () => console.log(`Server has been started on port ${PORT_2}...`));
+
+//   } catch (e) {
+//     console.log('Server error', e.message);
+//     process.exit(1);
+//   }
+// }
+
+// start();

@@ -5,7 +5,7 @@ import AddTask from '../components/AddTask';
 import { useParams } from 'react-router-dom';
 import FAQList from '../FAQPage/FAQList';
 import Navigationbar from '../components/Navigationbar';
-import "../App.css";
+import "../css/Eticket.css";
 
 
 export default function Eticket() {

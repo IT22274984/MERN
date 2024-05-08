@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import './Faq.css';
-import FaqService from './services/FaqService';
-import FAQList from './FAQPage/FAQList';
-import ManageFAQ from './FAQPage/ManageFAQ';
+import '../css/Eticket.css';
+import '../css/Faq.css';
+import FaqService from '../services/FaqService';
+import FAQList from '../FAQPage/FAQList';
+import ManageFAQ from '../FAQPage/ManageFAQ';
 
 function PageFAQ() {
   const [faqs, setFaqs] = useState([]);
