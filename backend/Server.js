@@ -5,6 +5,7 @@ const taskRoutes = require("./routes/taskRoute");
 const taskRout = require('./routes/cardRoute')
 const faqRoute = require("./routes/faqRoute");
 const payment = require('./routes/PaymentRoutes/PaymentRouter')
+const router = require("./routes/optical_routes");
 const mongoose = require('mongoose')
 var cors = require('cors')
 
@@ -38,4 +39,4 @@ app.use("/api/faq", faqRoute);
 app.use("/server/payment", payment)
 app.use("/api/card", taskRout)
 app.use('/Appoinments', require('./routes/appoinmentRoutes'));
-
+app.use("/opticals", router); // localhost:5000/opticals

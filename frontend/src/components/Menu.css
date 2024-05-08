@@ -1,0 +1,93 @@
+.container {
+    padding: 50px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #090303;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .search-icon {
+    margin-left: 10px;
+    font-size: 20px;
+  }
+  
+  .card {
+    display: flex;
+    border: 3px solid #4b5fe2;
+    border-radius: 15px; /* Increased border radius for a premium look */
+    margin-bottom: 20px;
+    max-width: 600px; /* Set maximum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    transition: transform 0.3s ease; /* Add transition for smooth hover effect */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Apply a slight lift on hover */
+  }
+  
+  .big-image {
+    flex: 1;
+    padding: 0; /* Remove padding to make the image fill the space */
+    display: flex;
+   
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+  }
+  
+  .image {
+    max-width: 100%; /* Ensure the image doesn't exceed the container width */
+    max-height: 100%; /* Ensure the image doesn't exceed the container height */
+    border-radius: 10px; /* Rounded corners for the image */
+  }
+  
+  
+  .details {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .price-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .link:hover {
+    background-color: #0056b3;
+  }
+  
