@@ -9,11 +9,15 @@ import {
   Card,
   CardMedia,
   CardContent,
-  IconButton, // Import IconButton
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import Slider from "react-slick";
 import { styled } from "@mui/system";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; // Import ShoppingCartIcon
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,10 +25,10 @@ import "slick-carousel/slick/slick-theme.css";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1976d2", // Blue color
+      main: "#1976d2",
     },
     secondary: {
-      main: "#f50057", // Pink color
+      main: "#f50057",
     },
   },
 });
@@ -46,13 +50,18 @@ const StyledTab = styled(Tab)({
 });
 
 const C_Home = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
   const images = [
     "https://imatrix.com/wp-content/uploads/sites/12/2020/09/shutterstock_1716928600-1024x536.png",
     "https://www.eyefashionoptical.com/img/EFO_2.jpg",
     "https://storage.googleapis.com/website-production/uploads/2023/04/what-is-contextual-advertising.webp",
   ];
   const sunglassesImages = [
-    // Add sunglasses images here
     "https://shop.visioncare.lk/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/a/_/a_21.jpg",
     "https://shop.visioncare.lk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/u/n/untitled_design_30_.png",
     "https://shop.visioncare.lk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/_/a_60.jpg",
@@ -65,11 +74,24 @@ const C_Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 40000, // 1 minute interval
+    autoplaySpeed: 40000,
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <Drawer anchor="left" open={showSidebar} onClose={toggleSidebar}>
+        <List>
+          <ListItem button component={NavLink} to="/" onClick={toggleSidebar}>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/about/:id" onClick={toggleSidebar}>
+            <ListItemText primary="CART" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/more" onClick={toggleSidebar}>
+            <ListItemText primary="More" />
+          </ListItem>
+        </List>
+      </Drawer>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <header>
           <StyledTabs value={false} textColor="inherit">
