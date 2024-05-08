@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsChatDots } from 'react-icons/bs';
 
 const Chat = () => {
     return (
@@ -9,6 +10,7 @@ const Chat = () => {
                     Have questions or need assistance? Chat with our experts for personalized advice and support.
                 </p>
                 <button className="mt-4 flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                    <BsChatDots className="mr-2 h-5 w-5" />
                     Chat Now
                 </button>
             </div>

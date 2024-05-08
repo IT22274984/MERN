@@ -62,7 +62,7 @@ const EditBooks = () => {
       bookPDFURL,
     };
 
-    fetch(`http://localhost:5000/book/${id}`, {
+    fetch(`http://localhost:5000/books/${id}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

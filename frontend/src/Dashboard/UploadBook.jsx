@@ -25,6 +25,7 @@ const UploadBook = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     const form = event.target;
 
     const bookTitle = form.bookTitle.value;
@@ -57,7 +58,7 @@ const UploadBook = () => {
       bookPDFURL,
     };
 
-    fetch("http://localhost:5000/upload-book", {
+    fetch("http://localhost:5000/books/", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

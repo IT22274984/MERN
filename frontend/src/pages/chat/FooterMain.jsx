@@ -26,6 +26,9 @@ const FooterMain = () => {
               <Footer.Link href="#">
                 Chat
               </Footer.Link>
+              <Footer.Link href="#">
+                Newsfeed
+              </Footer.Link>
             </Footer.LinkGroup>
           </div>
           <div>

@@ -16,6 +16,7 @@ import ErrorPage from "../pages/shared/ErrorPage";
 import About from "../pages/about/About";
 import Blog from "../pages/blog/Blog";
 import Chat from "../pages/chat/Chat";
+import Newsfeed from "../pages/newsfeed/Newsfeed";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/book/:id",
         element: <SignleBook />,
-        loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
       },
       {
         path: "/about",
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/chat",
         element: <Chat/>
+      },
+      {
+        path: "/newsfeed",
+        element: <Newsfeed/>
       }
     ]
   },
@@ -58,7 +63,7 @@ const router = createBrowserRouter([
       { path: "/admin/dashboard/upload", element: <UploadBook /> },
       { path: "/admin/dashboard/manage", element: <ManageBooks /> },
       { path: "/admin/dashboard/edit-books/:id", element: <EditBooks />,
-      loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
+      loader: ({ params }) => fetch(`http://localhost:5000/books/${params.id}`)
     },
     ],
   },

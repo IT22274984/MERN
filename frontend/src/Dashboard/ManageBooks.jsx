@@ -10,7 +10,7 @@ const ManageBooks = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        fetch(`http://localhost:5000/all-books`)
+        fetch(`http://localhost:5000/books/`)
             .then((res) => res.json())
             .then((data) => {
                 setAllBooks(data);
@@ -24,7 +24,7 @@ const ManageBooks = () => {
         })
             .then(() => {
                 // Fetch updated list of books after deletion
-                fetch(`http://localhost:5000/all-books`)
+                fetch(`http://localhost:5000/books/`)
                     .then((res) => res.json())
                     .then((data) => {
                         // Update state with the updated list of books

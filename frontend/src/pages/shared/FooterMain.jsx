@@ -14,6 +14,7 @@ const FooterMain = () => {
                 About
               </Footer.Link>
               <Footer.Link href="#">
+
                 Careers
               </Footer.Link>
               <Footer.Link href="#">
@@ -23,9 +24,12 @@ const FooterMain = () => {
                 Blog
               </Footer.Link>
               <Footer.Link href="#">
-                ICare
+                Chat
               </Footer.Link>
             </Footer.LinkGroup>
+            <Footer.Link href="#">
+                Newsfeed
+              </Footer.Link>
           </div>
           <div>
             <Footer.Title title="help center" />

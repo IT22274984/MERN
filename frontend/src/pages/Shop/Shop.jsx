@@ -7,7 +7,7 @@ export default function Shop() {
   const [books, setBooks] = useState([]);
 // fetching data
   useEffect(() =>{
-    fetch('http://localhost:5000/all-books')
+    fetch('http://localhost:5000/books/')
     .then(res => res.json())
     .then(data => setBooks(data))
   }, [loading]);
