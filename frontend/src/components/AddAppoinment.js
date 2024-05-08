@@ -32,12 +32,13 @@ export default function AddAppoinment() {
             condition
         }
 
-        await axios.post("http://localhost:5001/appoinments",newAppoinment)
+        await axios.post("http://localhost:4000/appoinments",newAppoinment)
         .then(() => {
             alert("Appoinment Added Successfully");
             navigate('/appoinments');
         })
         .catch(err => {
+            console.log(err)
             alert(err);
         })
     }

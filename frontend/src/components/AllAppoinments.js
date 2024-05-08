@@ -8,7 +8,7 @@ export default function AllAppoinments() {
     const [searchTerm, setSearchTerm] = useState("");
     let navigate = useNavigate();
     const getData = async () => {
-        await axios.get("http://localhost:5001/appoinments")
+        await axios.get("http://localhost:4000/appoinments")
         .then((res) => {            
             setAppoinments(res.data)
         })
@@ -36,7 +36,7 @@ export default function AllAppoinments() {
     
 
     const onDelete = async (id) => {
-        await axios.delete(`http://localhost:5001/appoinments/${id}`)
+        await axios.delete(`http://localhost:4000/appoinments/${id}`)
         .then(() => {
             alert("Appoinment Deleted Successfully")
             getData();

@@ -56,7 +56,7 @@ export default function UpdateAppoinment() {
             };
 
             try {
-                await axios.put(`http://localhost:5001/appoinments/${id}`, updatedAppoinment);
+                await axios.put(`http://localhost:4000/appoinments/${id}`, updatedAppoinment);
                 alert("Appointment Updated Successfully");
                 navigate('/appoinments');
                 localStorage.clear();

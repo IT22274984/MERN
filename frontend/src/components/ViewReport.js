@@ -7,7 +7,7 @@ export default function AllAppoinments() {
     const [searchTerm, setSearchTerm] = useState("");
    
     const getData = async () => {
-        await axios.get("http://localhost:5001/appoinments")
+        await axios.get("http://localhost:4000/appoinments")
         .then((res) => {            
             setAppoinments(res.data)
         })
