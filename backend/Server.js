@@ -1,25 +1,27 @@
-const express = require("express");
-require("dotenv").config();
-const mongoose = require("mongoose");
+const express = require('express');
+require('dotenv').config()
 const app = express();
 const taskRoutes = require("./routes/taskRoute");
+const taskRout = require('./routes/cardRoute')
 const faqRoute = require("./routes/faqRoute");
-const cors = require("cors");
-// const config = require('config');
+const payment = require('./routes/PaymentRoutes/PaymentRouter')
+const mongoose = require('mongoose')
+var cors = require('cors')
 
-//middle ware
+// Middleware
+app.use(cors())
+app.use(express.json())
+app.use((req, res, next) => {
+    console.log('path' + req.path + 'method' + req.method);
+    next();
+})
+
+
+//middleware
 app.use((req, res, next) => {
   console.log("path" + req.path + "method" + req.method);
   next();
 });
-
-app.use(express.json());
-
-app.use(cors());
-
-//  app.get("/",(req,res)=>{
-//      res.send("Hello Pilot asho");
-//  });
 
 //db connection
 mongoose
@@ -33,31 +35,6 @@ mongoose
 
 app.use("/api/tasks", taskRoutes);
 app.use("/api/faq", faqRoute);
+app.use("/server/payment", payment)
+app.use("/api/card", taskRout)
 
-// FAQs
-// const PORT = config.get('port_2') || 5000;
-
-// app.use(cors(
-//   {
-//     credentials: true,
-//     origin: config.get('client_url')
-//   }
-// ));
-// app.use(express.json());
-// app.use('/api', require('./router/index'));
-
-// const start = async () => {
-//   try {
-//     await mongoose.connect(process.env.DB_URL, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true
-//     });
-//     app.listen(PORT_2, () => console.log(`Server has been started on port ${PORT_2}...`));
-
-//   } catch (e) {
-//     console.log('Server error', e.message);
-//     process.exit(1);
-//   }
-// }
-
-// start();
