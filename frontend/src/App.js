@@ -1,8 +1,17 @@
-import React from 'react'
-import Pages from './Pages'
+import "../src/css/Eticket.css";
+import Pages from "./Pages"; 
+import PageFAQ from "../src/components/PageFAQ"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function () {
+function App() {
   return (
-    <div><Pages></Pages></div>
-  )
+    <>
+      <ToastContainer />
+      <Pages />
+      {/* <PageFAQ/> */}
+    </>
+  );
 }
+
+export default App;

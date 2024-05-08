@@ -1,174 +1,132 @@
 import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch } from "react-redux";
-import { updateCardInServer } from "./../slices/tasksSlice";
+import { updateTaskInServer } from "./../slices/tasksSlice";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import emailjs from '@emailjs/browser';
 
 const MyVerticallyCenteredModal = (props) => {
-  const [cardNum, setCardNum] = useState("");
-  const [holderName, setHolderName] = useState("");
-  const [cardType, setCardType] = useState("");
-  const [cvv, setCvv] = useState("");
-  const [exDate, setExDate] = useState("");
-  const [id, setId] = useState(0);
-  const [errors, setErrors] = useState({
-    cardNum: "",
-    cvv: "",
-    exDate: "",
-  });
+  const { selectedTask } = useSelector((state) => state.tasks);
 
-  const selectedCard = useSelector((state) => state.cards.selectedCard);
+  const [customername, setcustomername] = useState("");
+  const [email, setemail] = useState("");
+  const [topic, settopic] = useState("");
+  const [description, setDescription] = useState("");
+  const [responce, setResponce] = useState("");
+  const [ticketstatus, setStatus] = useState('');
+  const [id, setId] = useState(0);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (selectedCard) {
-      setCardNum(selectedCard.cardNum || "");
-      setHolderName(selectedCard.holderName || "");
-      setCardType(selectedCard.cardType || "");
-      setCvv(selectedCard.cvv || "");
-      setExDate(selectedCard.exDate || "");
-      setId(selectedCard._id || 0);
-    }
-  }, [selectedCard]);
-
-  const updateCard = () => {
-
-    // Reset errors
-    setErrors({
-      cardNum: "",
-      cvv: "",
-      exDate: "",
-    });
-
-    // Card number validation
-    if (cardNum.toString().length !== 16 || isNaN(cardNum)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        cardNum: "Card number must be exactly 16 digits",
-      }));
-      return;
-    }
-
-    // CVV validation
-    if (cvv.toString().length !== 3 || isNaN(cvv)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        cvv: "CVV must be exactly 3 digits",
-      }));
-      return;
-    }
-
-    // Expiration date validation
-    const today = new Date();
-    const expirationDate = new Date(exDate);
-    if (expirationDate <= today) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        exDate: "Expiration date must be a future date",
-      }));
-      return;
-    }
-
-    // Update card in server
+  const updateAndSendEmail = () => {
+    // Update the task first
     dispatch(
-      updateCardInServer({
+      updateTaskInServer({
         _id: id,
-        cardNum: cardNum,
-        holderName: holderName,
-        cardType: cardType,
-        cvv: cvv,
-        exDate: exDate,
+        customername,
+        email,
+        topic,
+        description,
+        responce,
+        ticketstatus,
       })
-    );
-    // Close modal
-    props.onHide();
+    ).then(() => {
+      // After updating the task, send the email
+      sendEmail();
+    });
+  };
+
+  useEffect(() => {
+    if (Object.keys(selectedTask).length !== 0) {
+      setcustomername(selectedTask.customername);
+      setemail(selectedTask.email);
+      settopic(selectedTask.topic);
+      setDescription(selectedTask.description);
+      setResponce(selectedTask.responce);
+      setStatus(selectedTask.ticketstatus);
+      setId(selectedTask._id);
+    }
+  }, [selectedTask]);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const options = ["Delivered", "Viewed", "Responded"];
+
+  const sendEmail = () => {
+    emailjs
+      .send('service_79842mg', 'template_ugi240w', {
+        customername,
+        email,
+        topic,
+        description,
+        responce,
+        ticketstatus,
+      }, 'jOx5WsWVCJyqUC1Gp') // Using the public key as the user ID
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          props.onHide(); // Close the modal after sending the email
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          console.log('Message not send')
+        }
+      );
   };
 
   return (
     <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
+      open={props.show}
+      onClose={props.onHide}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Update Card
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="formCardNum">
-            <Form.Label>Card Number</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Card Number"
-              value={cardNum}
-              onChange={(e) => setCardNum(e.target.value)}
-            />
-            {errors.cardNum && (
-              <Form.Text className="text-danger">{errors.cardNum}</Form.Text>
-            )}
-          </Form.Group>
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Response to E-ticket
+        </Typography>
 
-          <Form.Group className="mb-3" controlId="formHolderName">
-            <Form.Label>Card Holder Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Holder Name"
-              value={holderName}
-              onChange={(e) => setHolderName(e.target.value)}
-            />
-          </Form.Group>
+        <div className="mb-3">
+          <label htmlFor="formBasicResponce" className="form-label">Response</label>
+          <textarea
+            className="form-control"
+            id="formBasicResponce"
+            placeholder="Customer issues response"
+            value={responce}
+            style={{ height: '100px' }}
+            onChange={(e) => setResponce(e.target.value)}
+          ></textarea>
+        </div>
 
-          <Form.Group className="mb-3" controlId="formCardType">
-            <Form.Label>Card Type</Form.Label>
-            <Form.Control
-              as="select"
-              value={cardType}
-              onChange={(e) => setCardType(e.target.value)}
-            >
-              <option value="">Update Card Type</option>
-              <option value="visa">Visa</option>
-              <option value="master">Master</option>
-            </Form.Control>
-          </Form.Group>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          Status of the E-ticket
+        </Typography>
+        <Dropdown
+          options={options}
+          onChange={(option) => setStatus(option.value)}
+          value={ticketstatus}
+          placeholder="Select an option"
+        /><br />
 
-          <Form.Group className="mb-3" controlId="formCvv">
-            <Form.Label>CVV</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter CVV"
-              value={cvv}
-              onChange={(e) => setCvv(e.target.value)}
-            />
-            {errors.cvv && (
-              <Form.Text className="text-danger">{errors.cvv}</Form.Text>
-            )}
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formExDate">
-            <Form.Label>Expiration Date</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="Enter Expiration Date"
-              value={exDate}
-              onChange={(e) => setExDate(e.target.value)}
-            />
-            {errors.exDate && (
-              <Form.Text className="text-danger">{errors.exDate}</Form.Text>
-            )}
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
         <div className="text-end">
-          <Button variant="success" onClick={updateCard}>
-            Update Card
+          <Button variant="primary" onClick={updateAndSendEmail}>
+            Submit
           </Button>
         </div>
-      </Modal.Footer>
+      </Box>
     </Modal>
   );
 };

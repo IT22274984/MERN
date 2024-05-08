@@ -1,162 +1,158 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-    cardsList: [],
-    selectedCard: {},
-    isLoading: false,
-    error: ''
+    tasksList:[],
+    selectedTask:{},
+    isLoading:false,
+    error:''
 }
 
-const BASE_URL = 'http://localhost:4000/api/card';
+const BASE_URL = 'http://localhost:4000/api/tasks'
 
-// GET
-export const getCardsFromServer = createAsyncThunk(
-    "card/getCardsFromServer",
-    async (_, { rejectWithValue }) => {
-        try {
-            const response = await fetch(BASE_URL);
-            if (response.ok) {
-                const jsonResponse = await response.json();
-                return jsonResponse;
-            } else {
-                return rejectWithValue({ error: 'No Cards Found' });
+//GET
+export const getTasksFromServer = createAsyncThunk(
+    "tasks/getTasksFromServer",
+    async (_,{rejectWithValue}) => {
+        const response = await fetch(BASE_URL)
+        if (response.ok) {
+            const jsonResponse = await response.json()
+            return jsonResponse
+        } else {
+            return rejectWithValue({error:'No Tasks Found'})
+        }
+    }
+)
+
+//POST 
+export const addTaskToServer = createAsyncThunk(
+    "tasks/addTaskToServer",
+    async (task,{rejectWithValue}) => {
+        const options = {
+            method:'POST',
+            body: JSON.stringify(task),
+            headers: {
+                "Content-type":"application/json; charset=UTF-8"
             }
-        } catch (error) {
-            return rejectWithValue({ error: error.message });
+        }
+        const response = await fetch(BASE_URL,options)
+        if (response.ok) {
+            const jsonResponse = await response.json()
+            return jsonResponse
+        } else {
+            return rejectWithValue({error:'Task Not Added'})
         }
     }
-);
+)
 
-
- //post
-export const addCardToServer = createAsyncThunk(
-    "card/addCardToServer",
-    async (card, { rejectWithValue }) => {
-        try {
-            const response = await axios.post(BASE_URL, card, {
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            });
-            return response.data;
-        } catch (error) {
-            console.log(error)
-            return rejectWithValue({ error: error.message });
-        }
-    }
-);
-// PATCH 
-export const updateCardInServer = createAsyncThunk(
-    "card/updateCardInServer",
-    async (card, { rejectWithValue }) => {
-        try {
-            const options = {
-                method: 'PATCH',
-                body: JSON.stringify(card),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            };
-            const response = await fetch(BASE_URL + '/' + card._id, options);
-            if (response.ok) {
-                const jsonResponse = await response.json();
-                return jsonResponse;
-            } else {
-                return rejectWithValue({ error: 'Card Not Updated' });
+//PATCH 
+export const updateTaskInServer = createAsyncThunk(
+    "tasks/updateTaskInServer",
+    async (task,{rejectWithValue}) => {
+        const options = {
+            method:'PATCH',
+            body: JSON.stringify(task),
+            headers: {
+                "Content-type":"application/json; charset=UTF-8"
             }
-        } catch (error) {
-            return rejectWithValue({ error: error.message });
+        }
+        const response = await fetch(BASE_URL + '/' + task._id,options)
+        if (response.ok) {
+            const jsonResponse = await response.json()
+            return jsonResponse
+        } else {
+            return rejectWithValue({error:'Task Not Updated'})
         }
     }
-);
+)
 
-// DELETE 
-export const deleteCardFromServer = createAsyncThunk(
-    "card/deleteCardFromServer",
-    async (cardId, { rejectWithValue }) => {
-        console.log(cardId)
-        try {
-            const options = {
-                method: 'DELETE',
-            };
-            const response = await fetch(BASE_URL + '/' + cardId._id, options);
-            if (response.ok) {
-                const jsonResponse = await response.json();
-                return jsonResponse;
-            } else {
-                return rejectWithValue({ error: 'Card Not Deleted' });
-            }
-        } catch (error) {
-            return rejectWithValue({ error: error.message });
+//DELETE 
+export const deleteTaskFromServer = createAsyncThunk(
+    "tasks/deleteTaskFromServer",
+    async (task,{rejectWithValue}) => {
+        const options = {
+            method:'DELETE',
+        }
+        const response = await fetch(BASE_URL + '/' + task._id,options)
+        if (response.ok) {
+            const jsonResponse = await response.json()
+            return jsonResponse
+        } else {
+            return rejectWithValue({error:'Task Not Deleted'})
         }
     }
-);
+)
 
-const cardsSlice = createSlice({
-    name: 'cardsSlice',
+
+
+
+const tasksSlice = createSlice({
+    name:'tasksSlice',
     initialState,
     reducers: {
-        removeCardFromList: (state, action) => {
-            state.cardsList = state.cardsList.filter(card => card._id !== action.payload._id);
+        
+        removeTaskFromList:(state,action) => {
+            state.tasksList = state.tasksList.filter((task) => task._id !== action.payload._id)
         },
-        setSelectedCard: (state, action) => {
-            state.selectedCard = action.payload;
+        
+        setSelectedTask:(state,action) => {
+            state.selectedTask = action.payload
         }
+
     },
-    extraReducers: (builder) => {
+    extraReducers:(builder) => {
         builder
-            .addCase(getCardsFromServer.pending, (state) => {
-                state.isLoading = true;
+            .addCase(getTasksFromServer.pending,(state) => {
+                state.isLoading = true
             })
-            .addCase(getCardsFromServer.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = '';
-                state.cardsList = action.payload;
+            .addCase(getTasksFromServer.fulfilled,(state,action) => {
+                state.isLoading = false
+                state.error = ''
+                state.tasksList = action.payload
             })
-            .addCase(getCardsFromServer.rejected, (state, action) => {
-                state.error = action.payload.error || 'Failed to fetch cards';
-                state.isLoading = false;
-                state.cardsList = [];
+            .addCase(getTasksFromServer.rejected,(state,action) => {
+                state.error = action.payload.error
+                state.isLoading = false
+                state.tasksList = []
             })
-            .addCase(addCardToServer.pending, (state) => {
-                state.isLoading = true;
+            .addCase(addTaskToServer.pending,(state) => {
+                state.isLoading = true
             })
-            .addCase(addCardToServer.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = '';
-                state.cardsList.push(action.payload);
+            .addCase(addTaskToServer.fulfilled,(state,action) => {
+                state.isLoading = false
+                state.error = ''
+                state.tasksList.push(action.payload)
             })
-            .addCase(addCardToServer.rejected, (state, action) => {
-                state.error = action.payload.error || 'Failed to add card';
-                state.isLoading = false;
+            .addCase(addTaskToServer.rejected,(state,action) => {
+                state.error = action.payload.error
+                state.isLoading = false
             })
-            .addCase(updateCardInServer.pending, (state) => {
-                state.isLoading = true;
+            .addCase(updateTaskInServer.pending,(state) => {
+                state.isLoading = true
             })
-            .addCase(updateCardInServer.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = '';
-                state.cardsList = state.cardsList.map((card) => card._id === action.payload._id ? action.payload : card);
+            .addCase(updateTaskInServer.fulfilled,(state,action) => {
+                state.isLoading = false
+                state.error = ''
+                state.tasksList = state.tasksList.map((task) => task._id === action.payload._id ? action.payload : task )
             })
-            .addCase(updateCardInServer.rejected, (state, action) => {
-                state.error = action.payload.error || 'Failed to update card';
-                state.isLoading = false;
+            .addCase(updateTaskInServer.rejected,(state,action) => {
+                state.error = action.payload.error
+                state.isLoading = false
             })
-            .addCase(deleteCardFromServer.pending, (state) => {
-                state.isLoading = true;
+            .addCase(deleteTaskFromServer.pending,(state) => {
+                state.isLoading = true
             })
-            .addCase(deleteCardFromServer.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = '';
+            .addCase(deleteTaskFromServer.fulfilled,(state,action) => {
+                state.isLoading = false
+                state.error = ''
             })
-            .addCase(deleteCardFromServer.rejected, (state, action) => {
-                state.error = action.payload.error || 'Failed to delete card';
-                state.isLoading = false;
-            });
+            .addCase(deleteTaskFromServer.rejected,(state,action) => {
+                state.error = action.payload.error
+                state.isLoading = false
+            })
     }
-});
 
-export const { removeCardFromList, setSelectedCard } = cardsSlice.actions;
+})
 
-export default cardsSlice.reducer;
+export const {addTaskToList,removeTaskFromList,updateTaskInList,setSelectedTask} = tasksSlice.actions
+
+export default tasksSlice.reducer

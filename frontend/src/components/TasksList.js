@@ -1,117 +1,106 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import MyVerticallyCenteredModal from './UpdateTask'; // Assuming you have an UpdateCard component for updating cards
+import MyVerticallyCenteredModal from './UpdateTask';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedCard, removeCardFromList, deleteCardFromServer } from "../slices/tasksSlice";
-import { getCardsFromServer } from './../slices/tasksSlice';
-import PremiumHeader from './PremiumHeader'; // Import the PremiumHeader component
+import { setSelectedTask, removeTaskFromList, deleteTaskFromServer } from "../slices/tasksSlice";
+import { getTasksFromServer } from './../slices/tasksSlice';
 
-const CardsList = () => {
-  const { cardsList } = useSelector((state) => state.cards);
+const TasksList = () => {
+  const { tasksList } = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
-  const [modalShow, setModalShow] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const updateCard = (card) => {
-    console.log(card)
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const updateTask = (task) => {
+    console.log("update Task");
     setModalShow(true);
-    dispatch(setSelectedCard(card));
+    dispatch(setSelectedTask(task));
   };
 
   useEffect(() => {
-    dispatch(getCardsFromServer());
+    dispatch(getTasksFromServer());
   }, [dispatch]);
 
-  const deleteCard = (card) => {
-    dispatch(deleteCardFromServer(card))
+  const deleteTask = (task) => {
+    console.log("delete task");
+    dispatch(deleteTaskFromServer(task))
       .unwrap()
       .then(() => {
-        dispatch(removeCardFromList(card));
-        alert("successfully deleted")
+        dispatch(removeTaskFromList(task));
       });
   };
 
-  // Function to handle changes in the search input
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+  useEffect(() => {
+    // Filter tasksList based on search term
+    const filtered = tasksList.filter(task =>
+      task.customername.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredTasks(filtered);
+  }, [tasksList, searchTerm]);
 
-  // Filter the cardsList based on the search query
-  const filteredCards = cardsList.filter(card =>
-    card.holderName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    card.cardType.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
-      <PremiumHeader /> {/* Include the PremiumHeader component */}
+      <Form className="mb-3">
+        <Form.Group controlId="search">
+          <Form.Control
+            type="text"
+            placeholder="Search by name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Form.Group>
+      </Form>
 
-      {/* Search Bar */}
-      <Form.Group controlId="search" className="d-flex align-items-center">
-        <Form.Control
-          type="text"
-          placeholder="Search by Holder Name or Card Type"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="mr-2"
-          style={{ width: '300px', height: '40px' }} // Adjust width and height as needed
-        />
-        <Button variant="success">Search</Button>
-      </Form.Group>
-
-      {/* Table */}
-      <div className="table-container">
-        <Table striped bordered hover responsive>
-          <thead>
-            <tr className="text-center">
-              <th>Card ID</th>
-              <th>Card Number</th>
-              <th>Holder Name</th>
-              <th>Card Type</th>
-              <th>CVV</th>
-              <th>Expiration Date</th>
-              <th>Actions</th>
+      <Table striped bordered hover>
+        <thead>
+          <tr className="text-center">
+            <th>No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Topic</th>
+            <th>Discription</th>
+            <th>Responce</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredTasks.map((task, index) => (
+            <tr className="text-center" key={task._id}>
+              <td>{index + 1}</td>
+              <td>{task.customername}</td>
+              <td>{task.email}</td>
+              <td>{task.topic}</td>
+              <td>{task.description}</td>
+              <td>{task.responce}</td>
+              <td>{task.ticketstatus}</td>
+              <td>
+                {/* <Button
+                  variant="primary"
+                  className="mx-3"
+                  onClick={() => updateTask(task)}
+                >
+                  <i className="bi bi-pencil-square"></i>
+                </Button> */}
+                <Button variant="primary">
+                  <i className="bi bi-trash3" onClick={() => deleteTask(task)}></i>
+                </Button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {filteredCards.map((card, index) => (
-              <tr className="text-center" key={card._id}>
-                <td>{index + 1}</td>
-                <td>{card.cardNum}</td>
-                <td>{card.holderName}</td>
-                <td>{card.cardType}</td>
-                <td>{card.cvv}</td>
-                <td>{card.exDate}</td>
-                <td>
-                  <Button
-                    variant="outline-primary"
-                    className="mx-2"
-                    onClick={() => updateCard(card)}
-                  >
-                    Edit
-                  </Button>
-                  <Button variant="outline-danger" onClick={() => deleteCard(card)}>
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
+          ))}
+        </tbody>
+      </Table>
 
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-
-      {/* Footer */}
-      <footer className="premium-footer">
-        <p className="premium-footer-text">Manage your cards efficiently with ICare's premium features.</p>
-      </footer>
     </>
   );
 };
 
-export default CardsList;
+export default TasksList;

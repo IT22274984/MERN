@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'; // Import createRoot from react-dom/client
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -8,11 +8,10 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-const root = createRoot(document.getElementById('root')); // Use createRoot from react-dom/client
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+   <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>
