@@ -1,15 +1,40 @@
 import React, { useState } from "react";
-import { AppBar, Tab, Tabs, Toolbar, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import {
+  AppBar,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { Menu, Home } from "@mui/icons-material";
+import { NavLink, useLocation } from "react-router-dom";
+
 const C_Header = () => {
   const [value, setValue] = useState();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  // Show sidebar only on /client route
+  const showSidebar = location.pathname.startsWith("/client");
+
   return (
     <div>
       <AppBar sx={{ backgroundColor: "#232F3D" }} position="sticky">
         <Toolbar>
-          <NavLink to="/client" style={{ color: "white" }}>
-            <Typography>
-                Product Management
+          {showSidebar && (
+            <Menu onClick={toggleSidebar} style={{ color: "white", cursor: "pointer" }} />
+          )}
+          <NavLink to="/client" style={{ color: "white", textDecoration: "none" }}>
+            <Typography variant="h6" component="div">
+              Product Management
             </Typography>
           </NavLink>
           <Tabs
@@ -19,15 +44,26 @@ const C_Header = () => {
             value={value}
             onChange={(e, val) => setValue(val)}
           >
-            {/* 
-            <Tab LinkComponent={NavLink} to="/add" label="Add product" />
-            <Tab LinkComponent={NavLink} to="/opticals" label="Opticals" />*/}
             <Tab LinkComponent={NavLink} to="/about/:id" label="CART" />
             <Tab LinkComponent={NavLink} to="/more" label="More" />
-            
           </Tabs>
         </Toolbar>
       </AppBar>
+
+      <Drawer anchor="left" open={showSidebar && sidebarOpen} onClose={toggleSidebar}>
+        <List>
+          <ListItem button component={NavLink} to="/" onClick={toggleSidebar}>
+            <Home />
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/about/:id" onClick={toggleSidebar}>
+            <ListItemText primary="CART" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/more" onClick={toggleSidebar}>
+            <ListItemText primary="More" />
+          </ListItem>
+        </List>
+      </Drawer>
     </div>
   );
 };

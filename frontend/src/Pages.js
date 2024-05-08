@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import C_Header from "./components/C_Header";
 import Home from "./components/Home";
@@ -23,13 +23,14 @@ import QRScanner from "./components/QRScanner";
 
 function Pages() {
   const [favorites, setFavorites] = useState([]); // State for favorites
+  const location = useLocation();
+
+  // Determine which header to show based on the current path
+  const showCHeader = location.pathname.startsWith("/client");
 
   return (
     <React.Fragment>
-      <header>
-        <Header />
-        <C_Header />
-      </header>
+      {showCHeader ? <C_Header /> : <Header />}
       <main>
         <Routes>
           {/* Routes from the first Pages.js file */}
@@ -40,8 +41,6 @@ function Pages() {
           <Route path="/opticals/:id" element={<OpticalDetail />} exact />
           <Route path="/login" element={<Login />} exact />
           <Route path="/list" element={<Data />} exact />
-
-          {/* Routes from the second Pages.js file */}
           <Route path="/client" element={<C_Home />} exact />
           <Route path="/about/:id" element={<C_About favorites={favorites} />} exact />
           <Route path="/view" element={<View />} exact />
