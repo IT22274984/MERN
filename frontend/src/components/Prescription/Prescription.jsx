@@ -3,10 +3,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Prescription.css";
+import img from '../../assets/logo.png'
 
 const Prescription = (props) => {
   const history = useNavigate();
-  const { _id, Sphere, Cylinder, Axis, PupilDistance, Lence, Description } = props.prescription;
+  const { _id, Sphere, Cylinder, Axis, PupilDistance, Lence, Description,Mobilenumber } = props.prescription;
   const [open, setOpen] = useState(false);
 
   const handleDelete = async () => {
@@ -18,15 +19,25 @@ const Prescription = (props) => {
       });
   };
 
+  const currentDate = new Date().toLocaleDateString('en-GB');
+
   return (
     <div className="card">
-      <p><strong>Sphere:</strong> {Sphere}</p>
-      <p><strong>Cylinder:</strong> {Cylinder}</p>
-      <p><strong>Axis:</strong> {Axis}</p>
-      <p><strong>PupilDistance:</strong> {PupilDistance}</p>
-      <p><strong>Lence:</strong> {Lence}</p>
-      <p><strong>Description:</strong> {Description}</p>
-      <p></p>
+       <img className="presc" alt="" src={img} />
+       <div>
+        <h3> Prescription Details</h3>
+        <p><strong>Dr.Navashanth  </strong> . . . . . . . . . . . . . . . . . . .<strong>Date:</strong> {currentDate}</p>
+        <h4>------------------------------------------------------------------------</h4>
+        <div className="details">
+          <p><strong>Mobile Number:</strong> {Mobilenumber}</p>
+          <p><strong>Sphere:</strong> {Sphere}D</p>
+          <p><strong>Cylinder:</strong> {Cylinder}D</p>
+          <p><strong>Axis:</strong> {Axis} degrees</p>
+          <p><strong>PupilDistance:</strong> {PupilDistance}mm</p>
+          <p><strong>Lence:</strong> {Lence}</p>
+          <p><strong>Description:</strong> {Description}</p>
+        </div>
+      </div>
 
       <Button LinkComponent={Link} to={`/prescriptions/${_id}`} sx={{ mt: "auto" }}>
       <strong> Update</strong>

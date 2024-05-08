@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import Header from "../Header/Header";
 //import "./PrescriptionDetail.css";
+import Footermain from "../Header/FooterMain";
 
 const PrescriptionDetail = () => {
   const [inputs, setInputs] = useState(null);
@@ -191,6 +192,12 @@ if (!inputs.PupilDistance || isNaN(inputs.PupilDistance)) {
           <Button onClick={confirmUpdate} color="primary">Confirm</Button>
         </DialogActions>
       </Dialog>
+
+      <footer>
+       <Footermain/>
+      </footer>
+
+
     </div>
   );
 };

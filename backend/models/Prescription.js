@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const prescriptionSchema = new Schema({
+    Mobilenumber:{
+        type:String,
+        required:true
+    },
     Sphere:{
         type:Number,
         required:true

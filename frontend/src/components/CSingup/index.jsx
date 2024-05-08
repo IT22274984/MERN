@@ -8,6 +8,7 @@ const CSignup = () => {
 	const [data, setData] = useState({
 		firstName: "",
 		lastName: "",
+		Mobilenumber:"",
 		email: "",
 		password: "",
 	});
@@ -66,6 +67,15 @@ const CSignup = () => {
 							name="lastName"
 							onChange={handleChange}
 							value={data.lastName}
+							required
+							className={styles.input}
+						/>
+						<input
+							type="text"
+							placeholder="Mobile Number"
+							name="Mobilenumber"
+							onChange={handleChange}
+							value={data.Mobilenumber}
 							required
 							className={styles.input}
 						/>

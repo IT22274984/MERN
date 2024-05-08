@@ -32,10 +32,12 @@ const getById = async (req, res, next) => {
 
 
 const addPrescription = async (req, res, next) => {
+  const { Mobilenumber } = req.body;
   const { Sphere, Cylinder,Axis,PupilDistance,Lence, Description,available} = req.body;
   let prescription;
   try {
     prescription = new Prescription({
+      Mobilenumber,
       Sphere,
        Cylinder,
        Axis,
@@ -104,3 +106,25 @@ exports.addPrescription = addPrescription;
 exports.getById = getById;
 exports.updatePrescription = updatePrescription;
 exports.deletePrescription = deletePrescription; 
+
+
+// C:\Users\shant\OneDrive\Desktop\sampleProject\sample\server\controllers\prescriptions-controller.js
+
+const getPrescriptionsForCustomer = async (req, res, next) => {
+  console.log("hiiiiii");
+  const Mobilenumber = req.params.Mobilenumber;
+  let prescriptions;
+  try {
+    prescriptions = await Prescription.find({ Mobilenumber });
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (!prescriptions) {
+    return res.status(404).json({ message: "No prescriptions found for this customer" });
+  }
+  return res.status(200).json({ prescriptions });
+};
+
+exports.getPrescriptionsForCustomer = getPrescriptionsForCustomer;
+

@@ -13,26 +13,31 @@
 }
 
 .home {
+  font-size: 1.5em;
   left: 10vw; /* Example: 5% of the viewport width */
   width: 15vw; /* Example: 15% of the viewport width */
 }
 
 .library {
+  font-size: 1.5em;
   left: 25vw; /* Example: 25% of the viewport width */
   width: 15vw; /* Example: 15% of the viewport width */
 }
 
 .support {
+  font-size: 1.5em;
   left: 45vw; /* Example: 45% of the viewport width */
   width: 15vw; /* Example: 15% of the viewport width */
 }
 
 .logout {
+  font-size: 1.5em;
   left: 85vw; /* Example: 65% of the viewport width */
   width: 15vw; /* Example: 15% of the viewport width */
 }
 
 .appointment {
+  font-size: 1.5em;
   left: 65vw; /* Example: 65% of the viewport width */
   width: 15vw; /* Example: 15% of the viewport width */
 }

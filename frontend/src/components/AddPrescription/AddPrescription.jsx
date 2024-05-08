@@ -39,7 +39,8 @@ import {
   
     const sendRequest = async () => {
       await axios
-        .post("http://localhost:8080/prescriptions", {
+        .post("http://localhost:8080/prescriptions/upload", {
+          Mobilenumber:String(inputs.Mobilenumber),
           Sphere: Number(inputs.Sphere ),
           Cylinder: Number(inputs.Cylinder),
           Axis: Number(inputs.Axis),
@@ -50,7 +51,7 @@ import {
         })
         .then(() => {
           setShowMessage(true);
-        });
+        })
     };
   
     const handleSubmit = (e) => {
@@ -82,6 +83,16 @@ import {
       <form onSubmit={handleSubmit}>
       {showMessage && <div className="message">Prescription Added</div>}
         <Box className="formContainer">
+        <FormLabel>Mobile Number</FormLabel>
+          <TextField
+            value={inputs.Mobilenumber}
+            onChange={handleChange}
+            type="number"
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="Mobilenumber"
+          />
           <FormLabel>Sphere</FormLabel>
           <TextField
             value={inputs.Sphere}

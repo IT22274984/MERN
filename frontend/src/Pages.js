@@ -1,4 +1,4 @@
-//C:\Users\shant\OneDrive\Desktop\sample\client\src\App.js
+//C:\Users\shant\OneDrive\Desktop\sample\frontend\src\Pages.js
 import { Route, Routes, Navigate } from "react-router-dom";
 import OMain from "./components/OMain";
 import OSignup from "./components/OSingup";

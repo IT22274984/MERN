@@ -3,6 +3,7 @@ import "./Prescription.css";
 import axios from "axios";
 import CPrescription from "./CPrescription";
 import Header from "../Header/Header";
+import Footermain from "../Header/FooterMain";
 
 const URL = "http://localhost:8080/prescriptions";
 const fetchHandler = async () => {
@@ -29,6 +30,9 @@ const Prescriptions = () => {
             </li>
           ))}
       </ul>
+      
+       <Footermain/>
+      
     </div>
   );
 };

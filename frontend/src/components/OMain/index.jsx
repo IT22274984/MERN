@@ -2,13 +2,13 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
 import "./OptometristHome.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Prescriptions from "../Prescription/Prescriptions";
 import Header from "../Header/Header"
 import img from '../../assets/logo.png'
-import img1 from '../../assets/test.png'
+import img1 from '../../assets/test1.jpg'
 import img2 from '../../assets/number.jpg'
-
+import Footermain from "../Header/FooterMain";
 
 const OptometristHome = () => {
 
@@ -39,15 +39,18 @@ const OptometristHome = () => {
         setSignupDetails(JSON.parse(details));
       }
     }, []);
+
     
 
     const navigate = useNavigate();
+
     const handleUploadReport = () => {
       // Handle upload report logic
       navigate("/add", { state: { customer: selectedCustomer } });
   };
 
     const handleViewReports = () => {
+    // <Prescriptions data={data} />
       // Handle view reports logic
       navigate('/prescriptions',{ state: { customer: selectedCustomer } });
   };
@@ -59,14 +62,15 @@ const OptometristHome = () => {
 
  
   return (
+    <div>
     <div className="optometristhome">
-      <div>
+      
        <header>
         <Header/>
        </header>
        </div>
 
-      <main>
+       
       <div className="component">
       <b className="mark-attendance">Mark Attendance</b>
           <div className="confirm-your-present">{`Confirm your present, it’s easy to calculate presents.`}</div>
@@ -78,25 +82,33 @@ const OptometristHome = () => {
             <button className="confirm" onClick={handleMarkAttendance}>Mark Attendance</button>
           )}
           
+         
           <img className="number" alt="" src={img2} />
       </div>
-      </main>
+
+      
       <img className="test" alt="" src={img1} />
+     
       
-      
-      
+      <footer>
+       <Footermain/>
+      </footer>
+
       
       <div className="search-button">
       {signupDetails && (
         <div className="signup-details">
-          <h2>Optometrist  Details</h2>
-          <p> Name: {signupDetails.firstName} {signupDetails.lastName}</p>
-          <p>Email: {signupDetails.email}</p>
+           <h4>.</h4>
+          <h3> Dr. {signupDetails.firstName} {signupDetails.lastName}</h3>
+          <h3> {signupDetails.email}</h3>
         </div>
       )}
       </div>
+
       
-      
+
+
+
 
       <div className="group-parent1">
         <div className="rectangle-parent1">
@@ -104,7 +116,7 @@ const OptometristHome = () => {
           <div className="search">
           <input
                             type="text"
-                            placeholder="Search by customer name"
+                            placeholder="Search by customer Mobile Number"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -114,74 +126,22 @@ const OptometristHome = () => {
     <h2>Customer Details</h2>
     <p>Name: {selectedCustomer.firstName} {selectedCustomer.lastName}</p>
     <p>Email: {selectedCustomer.email}</p>
+    <br></br>
     <button onClick={handleUploadReport}>Upload Prescription</button>
-    <button onClick={handleViewReports}>Prescription Reports</button>
+   
+       <button onClick={handleViewReports}>Prescription Reports</button>
+    
+
     <img className="option" alt="" src={img} />
   </div>
 )}
 {showPrescriptions && <Prescriptions />}
 
         </div>
-        </div> 
-      </div>
-
-      <footer>
-      <div className="footer">
-        <div className="maps-location-parent">
-          <b className="maps-location">Maps Location</b>
-          <img className="image-3-icon" alt="" src="" />
         </div>
-        <div className="pages-parent">
-          <b className="pages">Pages</b>
-          <div className="home-appointment-library-container">
-            <p className="eye-check-up">{`Home `}</p>
-            <p className="eye-check-up">Appointment</p>
-            <p className="eye-check-up">Library</p>
-            <p className="proudct">Proudct</p>
-          </div>
-        </div>
-        <div className="service-parent">
-          <b className="service">Service</b>
-          <div className="eye-check-up-container">
-            <p className="eye-check-up">Eye Check Up</p>
-            <p className="eye-check-up">Optical Products</p>
-          </div>
-        </div>
-        <div className="group-parent">
-          <div className="group-wrapper">
-            <div className="i-care-wrapper">
-              <div className="i-care">I CARE</div>
-            </div>
-          </div>
-          <div className="one-of-the">
-            One of the world’s leading opticals providing safe and compasionate
-            care as its best for everyone
-          </div>
-        </div>
-       
         
-        <div className="contact-parent">
-          <b className="contact">Contact</b>
-          <div className="parent">
-            <div className="div">(0) 555-0120-00</div>
-           
-          </div>
-          <div className="frame-div" />
-          <div className="colombosri-lanka-parent">
-            <div className="colombosri-lanka">Colombo,Sri Lanka</div>
-           
-          </div>
-          <div className="icare001gmailcom-parent">
-            <div className="icare001gmailcom">icare001@gmail.com</div>
-            
-          </div>
-        </div>
-        <img className="logo-2-icon" alt="" src={img} />
-        <img className="footer-inner" alt="" src="/frame-3.svg" />
-        <div className="copyright2024icare">Copyright@2024ICare</div>
       </div>
-      </footer>
-
+      
     </div>
   );
 };

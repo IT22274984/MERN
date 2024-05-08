@@ -7,9 +7,11 @@ const prescriptionsController = require("../controllers/prescriptions-controller
 
 
 router.get("/",prescriptionsController.getAllPrescriptions);
-router.post("/",prescriptionsController.addPrescription);
+router.post("/upload",prescriptionsController.addPrescription);
 router.get("/:id", prescriptionsController.getById);
 router.put("/:id", prescriptionsController.updatePrescription);
 router.delete("/:id", prescriptionsController.deletePrescription);
+
+router.get("/customers/:Mobilenumber", prescriptionsController.getPrescriptionsForCustomer);
 
 module.exports = router;

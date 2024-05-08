@@ -6,8 +6,25 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(131, 3, 3, 0.1);
   text-align: left; /* Center align the content */
+  
+}
+.card img {
+  margin-right: 600px; /* Add some spacing between the image and text */
+  top: 14px;
+  border-radius: 50px;
+  width: 72px;
+  height: 72px; 
 }
 
+.card h3 {
+  margin-top: -55px;
+  color: #333;
+  text-align: center;
+}
+
+.card .details {
+  margin-bottom: 20px;
+}
 .card h4 {
   margin: 0;
   padding: 5px 0;
@@ -21,6 +38,7 @@
 
 .card button {
   margin-top: 10px;
+ 
 }
 
 ul {

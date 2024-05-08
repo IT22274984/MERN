@@ -24,14 +24,11 @@ router.post("/", async (req, res) => {
 		res.status(500).send({ message: "Internal Server Error" });
 	}
 });
-router.get("/search/:name", async (req, res) => {
+router.get("/search/:mobileNumber", async (req, res) => {
     try {
-        const name = req.params.name;
+        const mobileNumber = req.params.mobileNumber;
         const customers = await Customer.find({
-            $or: [
-                { firstName: { $regex: name, $options: "i" } },
-                { lastName: { $regex: name, $options: "i" } },
-            ],
+            Mobilenumber: { $regex: mobileNumber, $options: "i" }
         });
         res.status(200).json(customers);
     } catch (error) {
