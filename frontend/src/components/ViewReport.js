@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import '../styles/ViewReport.css'
+import NavBar from './Navbar';
 
 export default function AllAppoinments() {
     const[appoinments, setAppoinments] = useState([]);
@@ -48,6 +49,8 @@ export default function AllAppoinments() {
     });
 
     return(
+        <>
+        <NavBar/>
         <div className="container">
             <h1 style={{textAlign: 'center', fontFamily: 'cursive', fontSize: '50px'}}>All Appointments</h1>
             <div className="container">
@@ -98,5 +101,6 @@ export default function AllAppoinments() {
                 </table>
             </div>
         </div>
+        </>
     )         
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AllAppoinments.css'
+import NavBar from './Navbar';
 
 export default function AllAppoinments() {
     const[appoinments, setAppoinments] = useState([]);
@@ -73,11 +73,14 @@ export default function AllAppoinments() {
     });
 
     return(
+    <>
+    <NavBar/>
+    
         <div className="container">
             <h1 style={{textAlign: 'center', fontFamily: 'cursive', fontSize: '50px'}}>All Appointments</h1>
             <div className="container">
                 <div>
-                    <button className="button-add" onClick={() => navigate("/")}>
+                    <button className="button-add" onClick={() => navigate("/AddAppointment")}>
                         Add Appoinments
                     </button>
                 </div>
@@ -129,5 +132,6 @@ export default function AllAppoinments() {
                 </table>
             </div>
         </div>
+        </>
     )         
 }
