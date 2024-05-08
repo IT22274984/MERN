@@ -9,7 +9,7 @@ const Sunglasses = ({ favorites, setFavorites }) => {
   const addToFavorites = (optical) => {
     setFavorites([...favorites, optical]);
     navigate({
-      pathname: `/about/${optical.name}`,
+      pathname: `/about/${optical._id}`,
       state: { sunglass: optical },
     });
   };

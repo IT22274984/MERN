@@ -32,7 +32,7 @@ const AddOptical = () => {
 
   const sendRequest = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/opticals", {
+      const response = await axios.post("http://localhost:4000/opticals", {
         name: String(inputs.name),
         description: String(inputs.description),
         price: Number(inputs.price),

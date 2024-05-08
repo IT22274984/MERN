@@ -20,7 +20,7 @@ const OpticalDetail = () => {
   useEffect(() => {
     const fetchHandler = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/opticals/${id}`);
+        const { data } = await axios.get(`http://localhost:4000/opticals/${id}`);
         const opticalData = data.optical;
         opticalData.price = parseFloat(opticalData.price);
         setInputs(opticalData);
@@ -47,7 +47,7 @@ const OpticalDetail = () => {
       }
   
       // If validation passes, proceed with the request
-      await axios.put(`http://localhost:5000/opticals/${id}`, {
+      await axios.put(`http://localhost:4000/opticals/${id}`, {
         ...inputs,
         available: checked,
       });

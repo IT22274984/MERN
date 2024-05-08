@@ -3,7 +3,7 @@ import "./Optical.css";
 import axios from "axios";
 import Optical from "./Optical";
 
-const URL = "http://localhost:5000/opticals";
+const URL = "http://localhost:4000/opticals";
 
 const fetchHandler = async () => {
   return await axios.get(URL).then((res) => res.data);

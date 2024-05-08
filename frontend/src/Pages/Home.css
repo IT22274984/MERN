@@ -1,0 +1,101 @@
+/* ModifiedHome.css */
+
+.modified-pay-details-button {
+  margin-right: 60px; /* Adjust the value to your preference */
+}
+
+
+.modified-main-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.modified-admin-home {
+  font-family: Arial, sans-serif;
+}
+
+.modified-header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 100%;
+ display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modified-logo {
+  width: 100px;
+}
+
+.modified-nav-bar a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 20px;
+}
+
+.modified-logout-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modified-main-content {
+  padding: 20px;
+}
+
+.modified-pay-details-button {
+  padding: 15px 30px;
+  border: none;
+  background-color: #4caf50; /* Green color */
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.modified-pay-details-button:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
+
+.modified-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.modified-footer-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modified-footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modified-footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.modified-footer-column h3 {
+  margin-bottom: 10px;
+}
+
+.modified-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.modified-footer a:hover {
+  text-decoration: underline;
+}
+
+.modified-footer .modified-copyright {
+  margin-top: 20px;
+}

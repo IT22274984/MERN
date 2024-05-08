@@ -1,21 +1,41 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const router = require("./routes/optical_routes");
-const cors = require("cors");
+const express = require('express');
+require('dotenv').config()
 const app = express();
+const taskRoutes = require("./routes/taskRoute");
+const taskRout = require('./routes/cardRoute')
+const faqRoute = require("./routes/faqRoute");
+const payment = require('./routes/PaymentRoutes/PaymentRouter')
+const router = require("./routes/optical_routes");
+const mongoose = require('mongoose')
+var cors = require('cors')
 
-// Middlewares
-app.use(express.json());
-app.use(cors());
-app.use("/opticals", router); // localhost:5000/opticals
+// Middleware
+app.use(cors())
+app.use(express.json())
+app.use((req, res, next) => {
+    console.log('path' + req.path + 'method' + req.method);
+    next();
+})
 
+
+//middleware
+app.use((req, res, next) => {
+  console.log("path" + req.path + "method" + req.method);
+  next();
+});
+
+//db connection
 mongoose
-  .connect(
-    "mongodb+srv://admin:BpmmMG8UUhzGzMSf@cluster0.130jkof.mongodb.net/shan_product?retryWrites=true&w=majority&appName=Cluster0"
-  )
-  .then(() => console.log("Connected To Database"))
+  .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(5000);
+    app.listen(process.env.PORT, () => {
+      console.log("DB connected Successfully listening to " + process.env.PORT);
+    });
   })
-  .catch((err) => console.log(err));
-//BpmmMG8UUhzGzMSf
+  .catch((error) => console.log(error));
+
+app.use("/api/tasks", taskRoutes);
+app.use("/api/faq", faqRoute);
+app.use("/server/payment", payment)
+app.use("/api/card", taskRout)
+app.use("/opticals", router); // localhost:5000/opticals

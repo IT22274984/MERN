@@ -17,7 +17,7 @@ const Optical = (props) => {
   } = props.optical;
 
   const deleteHandler = async () => {
-    // Delete logic here
+    // Delete logic here : TODO
   };
 
   return (

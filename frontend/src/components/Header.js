@@ -1,42 +1,33 @@
-import React, { useState } from "react";
-import { AppBar, Tab, Tabs, Toolbar, Typography, Button } from "@mui/material";
-import { NavLink } from "react-router-dom";
+// import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
-  const [value, setValue] = useState();
 
-  // Function to handle sign out
-  const handleSignOut = () => {
-    // Implement your sign out logic here
-    console.log("Signing out...");
-  };
+const Support = () => {
+
+  const handleLogout = () => {
+		localStorage.removeItem("token");
+		window.location.reload();
+	};
 
   return (
-    <div>
-      <AppBar sx={{ backgroundColor: "#232F3D" }} position="sticky">
-        <Toolbar>
-          <NavLink to="/" style={{ color: "white" }}>
-            <Typography gutterBottom variant="h5" component="div">
-              <b>ICARE</b>
-            </Typography>
-          </NavLink>
-          <Tabs
-            sx={{ ml: "auto" }}
-            textColor="inherit"
-            indicatorColor="primary"
-            value={value}
-            onChange={(e, val) => setValue(val)}
-          >
-            <Tab LinkComponent={NavLink} to="/add" label="Add product" />
-            <Tab LinkComponent={NavLink} to="/opticals" label="Opticals" />
-            <Tab LinkComponent={NavLink} to="/list" label="Data" />
-            <Tab LinkComponent={NavLink} to="/chart" label="Chart" />
-          </Tabs>
-          {/* Sign out button */}
-        </Toolbar>
-      </AppBar>
+    <div className="header">
+      <div className="header-inner">
+        <div className="group-child" />
+      </div>
+      <div className="logout"><nav >
+				<button onClick={handleLogout}>
+					Logout
+				</button>
+			</nav>
+      </div>
+      <div className="library">Library</div>
+      <div className="support">Support</div>
+      <div className="home">Home</div>
+      <div className="appointment">Appointment</div>
+      
+      <img className="logo-1-icon" alt="" src="/logo-1@2x.png" />
     </div>
   );
 };
 
-export default Header;
+export default Support;
