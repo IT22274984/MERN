@@ -1,3 +1,9 @@
+body {
+  background-image: url('./images/Home.jpg');
+  background-size: cover;
+ 
+  background-repeat: no-repeat;
+}
 .App {
   text-align: center;
 }
@@ -77,4 +83,3 @@
   font-size: 16px;
   margin: 0;
 }
-

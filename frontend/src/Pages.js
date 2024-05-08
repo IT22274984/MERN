@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
@@ -30,6 +31,10 @@ import NotFound from "./Pages/404";
 import Admin from "./Pages/Admin";
 import Home from "./Pages/Home"
 import CardsList from './components/CardList';
+import AddAppoinment from './components/AddAppoinment';
+import AllAppoinments from './components/AllAppoinments';
+import ViewReport from './components/ViewReport';
+import UpdateAppoinment from './components/UpdateAppoinment';
 
 export default function Pages() {
   const [favorites, setFavorites] = useState([]); // State for favorites
@@ -40,10 +45,14 @@ export default function Pages() {
   return (
     <Router>
       <Routes>
-        <Route path="/eticket" element={<Eticket />}/>
-        <Route path="/admin" element={<Admin/>}/>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/eticket" element={<Eticket />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/" element={<Home />} />
         <Route exact path="/card" element={<Card></Card>} />
+        <Route path="/appoinments" element={<AllAppoinments />} />
+        <Route path="/addAppointment" element={<AddAppoinment />} />
+        <Route path="/update-appoinment" element={<UpdateAppoinment />} />
+        <Route path="/view-report" element={<ViewReport />} />
         <Route path="/cards-list" element={<CardsList/>} />
         <Route path="/payment" element={<PaymentShow/>} />
         <Route path="/AllPay" element={<Paytable />} /> 

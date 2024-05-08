@@ -38,4 +38,5 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/faq", faqRoute);
 app.use("/server/payment", payment)
 app.use("/api/card", taskRout)
+app.use('/Appoinments', require('./routes/appoinmentRoutes'));
 app.use("/opticals", router); // localhost:5000/opticals
