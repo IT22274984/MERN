@@ -65,7 +65,7 @@ export default function AllAppoinments() {
             <button 
             type = "button"
             className ="btn-report"
-            onClick={() => GenerateReport()}>Generate Report</button>
+            onClick={() => GenerateReport()}>Generate Report</button> <br></br>
                 <table style={{ textAlign: 'center' }}>
                     <thead>
                         <tr>

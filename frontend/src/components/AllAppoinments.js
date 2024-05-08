@@ -77,7 +77,7 @@ export default function AllAppoinments() {
             <h1 style={{textAlign: 'center', fontFamily: 'cursive', fontSize: '50px'}}>All Appointments</h1>
             <div className="container">
                 <div>
-                    <button className="button-add" onClick={() => navigate("/add-appoinment")}>
+                    <button className="button-add" onClick={() => navigate("/")}>
                         Add Appoinments
                     </button>
                 </div>
@@ -92,7 +92,7 @@ export default function AllAppoinments() {
             <button 
             type = "button"
             className ="btn-report"
-            onClick={() => GenerateReport()}>Generate Report</button>
+            onClick={() => GenerateReport()}>Generate Report</button> <br></br>
                 <table style={{ textAlign: 'center' }}>
                     <thead>
                         <tr>

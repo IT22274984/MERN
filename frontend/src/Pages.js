@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import AddAppoinment from './components/AddAppoinment';
 import AllAppoinments from './components/AllAppoinments';
 import ViewReport from './components/ViewReport';
-import Home from './components/Home';
 // import Header from './components/Header';
 
 import UpdateAppoinment from './components/UpdateAppoinment';
@@ -18,10 +17,9 @@ function Pages() {
         {<NavBar/>}
         <Routes>
           <Route path="/appoinments" element={<AllAppoinments/>}/>
-          <Route path="/add-appoinment" element={<AddAppoinment/>}/>
+          <Route path="/" element={<AddAppoinment/>}/>
           <Route path="/update-appoinment" element={<UpdateAppoinment/>}/>
           <Route path="/view-report" element={<ViewReport/>}/>
-          <Route path="/home" element={<Home/>}/>
         </Routes>
       </div>
     </Router>
