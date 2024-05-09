@@ -1,0 +1,41 @@
+.my-5 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.text-danger {
+  color: #dc3545; /* Red color for error messages */
+}
+
+.text-end {
+  text-align: right; /* Align the button to the right */
+}
+
+.btn-primary {
+  background-color: #4cae92; /* Blue background color */
+  border-color: #4cae92; /* Blue border color */
+}
+
+.btn-primary:hover {
+  background-color: #4cae92; /* Darker blue background color on hover */
+  border-color: #4cae92; /* Darker blue border color on hover */
+}
+.premium-button:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
+/* In your AddTask.css file or any other CSS file */
+.premium-footer {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 20px;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #333; /* Dark text color */
+}
+
+.premium-footer-text {
+  font-size: 16px;
+  margin: 0;
+}
+

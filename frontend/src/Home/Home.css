@@ -1,0 +1,90 @@
+/* Home.css */
+
+.admin-home {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 100px;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 20px;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.pay-details-button {
+  padding: 15px 30px;
+  border: none;
+  background-color: #4caf50; /* Green color */
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.pay-details-button:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column h3 {
+  margin-bottom: 10px;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .copyright {
+  margin-top: 20px;
+}
