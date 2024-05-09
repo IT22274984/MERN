@@ -1,12 +1,12 @@
 import './App.css';
 import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import C_Header from "./components/C_Header";
 //import Home from "./components/Home";
 import AddOptical from "./components/AddOptical";
 import Opticals from "./components/Opticals";
-import About from "./components/About";
+// import About from "./components/About";
 import OpticalDetail from "./components/OpticalDetail";
 import Data from "./components/Data";
 import Login from "./components/Login";
@@ -35,6 +35,13 @@ import AddAppoinment from './components/AddAppoinment';
 import AllAppoinments from './components/AllAppoinments';
 import ViewReport from './components/ViewReport';
 import UpdateAppoinment from './components/UpdateAppoinment';
+// hams
+import About from "./Pages/About"
+import SignIn from "./Pages/SignIn"
+import SignUp from "./Pages/SignUp"
+import Profile from "./Pages/Profile"
+import Header from "./components/Header"
+import PrivateRoute from "./components/PrivateRoute"
 
 export default function Pages() {
   const [favorites, setFavorites] = useState([]); // State for favorites
@@ -53,10 +60,10 @@ export default function Pages() {
         <Route path="/addAppointment" element={<AddAppoinment />} />
         <Route path="/update-appoinment" element={<UpdateAppoinment />} />
         <Route path="/view-report" element={<ViewReport />} />
-        <Route path="/cards-list" element={<CardsList/>} />
-        <Route path="/payment" element={<PaymentShow/>} />
-        <Route path="/AllPay" element={<Paytable />} /> 
-        <Route path="/home" element={<Home />} /> 
+        <Route path="/cards-list" element={<CardsList />} />
+        <Route path="/payment" element={<PaymentShow />} />
+        <Route path="/AllPay" element={<Paytable />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/" element={<Home />} exact />
         <Route path="/add" element={<AddOptical />} exact />
         <Route path="/opticals" element={<Opticals />} exact />
@@ -75,7 +82,15 @@ export default function Pages() {
         <Route path="/gift" element={<GiftVouchers favorites={favorites} setFavorites={setFavorites} />} exact />
         <Route path="/spectacles" element={<Spectacles favorites={favorites} setFavorites={setFavorites} />} exact />
         <Route path="/QR" element={<QRScanner />} exact />
-        <Route path="*" element={<NotFound />}/>
+        {/* hams */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
