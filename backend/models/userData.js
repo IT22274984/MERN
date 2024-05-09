@@ -1,13 +1,11 @@
-// models/UserModel.js
 const mongoose = require('mongoose');
-
-const schemaData = mongoose.Schema({
-    color: String,
-    size: String,
-    add: String,
-    quan: String,
+ 
+const userSchema = new mongoose.Schema({
+    user_name: String,
+    user_email: String,
+    message: String,
 }, {
     timestamps: true
 });
-
-module.exports  = mongoose.model("user", schemaData);
+ 
+module.exports = mongoose.model("UserMail", userSchema);

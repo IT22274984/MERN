@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import "../App.css";
+import "../css/crud.css";
 import img1 from "./image/stu.jpeg";
 import yellow from "./image/yellow.jpeg";
 import red from "./image/red.jpeg";

@@ -1,4 +1,4 @@
-const User = require("../models/userData");
+const User = require("../models/uData");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -10,14 +10,18 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  try {
-    const data = new User(req.body);
-    await data.save();
-    res.json({ success: true, message: "Data saved successfully", data: data });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-};
+    console.log("Received body for creation:", req.body);  // Log incoming data
+    try {
+      const data = new User(req.body);
+      await data.save();
+      console.log("Saved data:", data);  // Log the response from save operation
+      res.json({ success: true, message: "Data saved successfully", data: data });
+    } catch (err) {
+      console.error("Error saving data:", err.message);  // Detailed error logging
+      res.status(500).json({ success: false, error: err.message });
+    }
+  };
+  
 
 exports.updateUser = async (req, res) => {
   try {

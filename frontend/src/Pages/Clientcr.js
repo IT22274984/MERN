@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../App.css";
+import "../css/crud.css";
 import Formtable from "../components/Formtable";
+// import backgroundImage from '../components/image/bnm.jpg';  // Importing the background image
 import "jspdf-autotable";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +27,8 @@ export default function Client() {
   const [loading, setLoading] = useState(false);
   const [tableVisible, setTableVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleOnChange = (e) => {
     const { value, name } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -38,7 +40,7 @@ const navigate = useNavigate();
     try {
       const { data } = await axios.post(`${BASE_URL}create`, formData);
       if (data.success) {
-        alert(data.Message);
+        alert("Submitted");
         getFetchData();
       }
     } catch (error) {
@@ -53,6 +55,7 @@ const navigate = useNavigate();
     try {
       const { data } = await axios.get(BASE_URL);
       setDataList(data.data);
+      console.log(data.data)
     } catch (error) {
       alert("Error fetching data. Please try again.");
     } finally {
@@ -98,29 +101,25 @@ const navigate = useNavigate();
     setEditSection(true);
   };
 
-
   return (
     <>
-      <div className="container">
+      <div className="container" >
         <button
           className="btn btn-view"
           onClick={() => setTableVisible(!tableVisible)}
         >
           Customer Details
         </button>
-        <button
-        className="btn btn-view"
-        onClick={() => navigate("/Admin")}>Admin</button>
+        <button className="btn btn-view" onClick={() => navigate("/admincr")}>
+          Admin
+        </button>
         {tableVisible && (
-          <>
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            
-          </>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         )}
       </div>
 
@@ -140,28 +139,22 @@ const navigate = useNavigate();
               {dataList
                 .filter(
                   (el) =>
-                    el.color.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    el.size.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    el.add.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    el.quan.toLowerCase().includes(searchTerm.toLowerCase())
+                    el?.color?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    el?.size?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    el?.add?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    el?.quan?.toLowerCase().includes(searchTerm.toLowerCase())
                 )
                 .map((el) => (
-                  <tr key={el._id}>
-                    <td>{el.color}</td>
-                    <td>{el.size}</td>
-                    <td>{el.add}</td>
-                    <td>{el.quan}</td>
+                  <tr key={el?._id}>
+                    <td>{el?.color}</td>
+                    <td>{el?.size}</td>
+                    <td>{el?.add}</td>
+                    <td>{el?.quan}</td>
                     <td>
-                      <button
-                        className="btn btn-edit"
-                        onClick={() => handleEdit(el)}
-                      >
+                      <button className="btn btn-edit" onClick={() => handleEdit(el)}>
                         Edit
                       </button>
-                      <button
-                        className="btn btn-delete"
-                        onClick={() => handleDelete(el._id)}
-                      >
+                      <button className="btn btn-delete" onClick={() => handleDelete(el._id)}>
                         Delete
                       </button>
                     </td>
