@@ -35,16 +35,22 @@ import AddAppoinment from './components/AddAppoinment';
 import AllAppoinments from './components/AllAppoinments';
 import ViewReport from './components/ViewReport';
 import UpdateAppoinment from './components/UpdateAppoinment';
+//mathu
+import Admincr from "./Pages/Admincr";
+import Clientcr from "./Pages/Clientcr";
+import Adminst from "./Pages/Adminst";
 
 export default function Pages() {
   const [favorites, setFavorites] = useState([]); // State for favorites
-  // const location = useLocation();
-
-  // // Determine which header to show based on the current path
-  // const showCHeader = location.pathname.startsWith("/client");
+  
   return (
+    <>
     <Router>
       <Routes>
+       <Route path="/adminst" element={<Adminst />} />
+        <Route path="/admincr" element={<Admincr />} />
+        <Route path="/clientcr" element={<Clientcr />} />
+        {/* <Route path="/" element={<Navigate to={"/clientcr"} />} /> */}
         <Route path="/eticket" element={<Eticket />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Home />} />
@@ -78,5 +84,6 @@ export default function Pages() {
         <Route path="*" element={<NotFound />}/>
       </Routes>
     </Router>
+    </>
   );
 }

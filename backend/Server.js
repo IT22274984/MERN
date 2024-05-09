@@ -6,6 +6,8 @@ const taskRout = require('./routes/cardRoute')
 const faqRoute = require("./routes/faqRoute");
 const payment = require('./routes/PaymentRoutes/PaymentRouter')
 const router = require("./routes/optical_routes");
+const userRoutes = require("./routes/uRoutes")
+const userRou = require("./routes/userRoutes")
 const mongoose = require('mongoose')
 var cors = require('cors')
 
@@ -40,3 +42,5 @@ app.use("/server/payment", payment)
 app.use("/api/card", taskRout)
 app.use('/Appoinments', require('./routes/appoinmentRoutes'));
 app.use("/opticals", router); // localhost:5000/opticals
+app.use("/users",userRoutes);
+app.use("/userMail",userRou)
