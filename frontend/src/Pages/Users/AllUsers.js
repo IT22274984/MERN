@@ -25,7 +25,7 @@ export default function BasicTable() {
     const [users, setusers] = React.useState([])
 
     React.useEffect(() => {
-        axios.get("http://localhost:3000/api/user/").then((res) => {
+        axios.get("http://localhost:4000/api/user/").then((res) => {
             setusers(res.data)
         }).catch((er) => { })
     }, [])
