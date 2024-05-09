@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 import '../styles/AddAppoinment.css'
+import Navbar from './Navbar';
 
 export default function AddAppoinment() {
     let navigate = useNavigate();
@@ -61,6 +62,8 @@ export default function AddAppoinment() {
         
 
     return (
+        <>
+        <Navbar/>
         <div className='container'>
             <br></br>
            
@@ -115,5 +118,6 @@ export default function AddAppoinment() {
 
             
         </div>
+        </>
     )
 }

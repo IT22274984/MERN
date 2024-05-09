@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AddAppoinment.css'
+import NavBar from './Navbar';
 
 export default function UpdateAppoinment() {
     let navigate = useNavigate();
@@ -67,6 +68,8 @@ export default function UpdateAppoinment() {
     };
 
     return (
+        <>
+        <NavBar/>
         <div className='container'>
             <br />
             <form onSubmit={handleSubmit} className="my-form">
@@ -118,5 +121,6 @@ export default function UpdateAppoinment() {
                 <button type="submit" className="btn btn-primary">UPDATE</button>
             </form>
         </div>
+        </>
     )
 }
