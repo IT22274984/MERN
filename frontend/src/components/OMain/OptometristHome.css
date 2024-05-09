@@ -1,0 +1,509 @@
+
+
+
+.mark-attendance {
+  position: absolute;
+  top: 12.18%;
+  left: 21.2%;
+  font-size: 30px;
+}
+.confirm-your-present {
+  position: absolute;
+  height: 32.29%;
+  width: 84.37%;
+  top: 29.18%;
+  left: 12.42%;
+  white-space: pre-wrap;
+  display: inline-block;
+}
+
+.confirm {
+  position: absolute;
+  top: 66.59%;
+  left: 37.61%;
+  color: #fff;
+  background-color:#307172 ;
+  height: 40px;
+  border-radius: 30%;
+}
+.component {
+  position: absolute;
+  top: 454px;
+  left: 233px;
+  width: 467px;
+  height: 353px;
+  font-size: 24px;
+  
+}
+.attendance-marked{
+  -webkit-text-fill-color: #ef1c20;
+  position: absolute;
+  top: 190px;
+  left: 110px;
+  
+}
+
+/*above are attendance*/
+
+.group-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #4270a2;
+  width: 1440px;
+  height: 39px;
+}
+
+.library,
+.maps-location {
+  position: absolute;
+  display: inline-block;
+}
+.library {
+  top: 81px;
+  left: 882px;
+  font-weight: 500;
+  color: #4a4a4a;
+  width: 181.6px;
+  height: 121px;
+}
+.maps-location {
+  top: 0;
+  left: 0;
+  width: 94.2px;
+  height: 18.5px;
+}
+
+.maps-location-parent {
+  position: absolute;
+  top: 5px;
+  left: 1165px;
+  width: 226.3px;
+  height: 153px;
+  font-family: "Noto Sans";
+}
+.pages {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 48.7px;
+  height: 15.1px;
+}
+.proudct {
+  margin: 0;
+}
+.home-appointment-library-container {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.69);
+  display: inline-block;
+  width: 69.2px;
+  height: 77px;
+}
+.pages-parent,
+.service {
+  position: absolute;
+  top: 14px;
+  left: 660px;
+  width: 69.2px;
+  height: 107.1px;
+}
+.service {
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 57.3px;
+  height: 16.3px;
+}
+.eye-check-up {
+  margin-block-start: 0;
+  margin-block-end: 14.89px;
+}
+.eye-check-up-container {
+  position: absolute;
+  top: 32.5px;
+  left: 0;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  display: inline-block;
+  width: 87px;
+  height: 59.4px;
+}
+.service-parent {
+  position: absolute;
+  top: 13px;
+  left: 779px;
+  width: 87px;
+  height: 91.9px;
+}
+.group-wrapper,
+.i-care,
+.i-care-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.i-care {
+  font-weight: 600;
+  display: inline-block;
+}
+.group-wrapper,
+.i-care-wrapper {
+  right: 0;
+  bottom: 0;
+}
+.group-wrapper {
+  height: 21.36%;
+  width: 31.98%;
+  right: 60.53%;
+  bottom: 78.64%;
+  left: 7.49%;
+}
+.one-of-the {
+  position: absolute;
+  top: 41px;
+  left: 0;
+  font-size: 14px;
+  text-align: left;
+  display: inline-block;
+  width: 320.5px;
+  height: 57.3px;
+}
+.group-parent {
+  position: absolute;
+  height: 52.29%;
+  width: 22.26%;
+  top: 14.89%;
+  right: 70.52%;
+  bottom: 32.82%;
+  left: 7.22%;
+  text-align: center;
+  font-family: Poppins;
+}
+.footer-child,
+.footer-item {
+  position: absolute;
+  top: 176px;
+  left: 918px;
+  width: 527px;
+  height: 26px;
+}
+.footer-item {
+  left: 0;
+  border-radius: 0 62.59px 0 0;
+  background-color: rgba(251, 252, 254, 0.49);
+}
+.group-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 27.1px;
+  height: 28.8px;
+}
+
+
+
+.group-container {
+  position: absolute;
+  top: 162px;
+  left: 615px;
+  width: 160.6px;
+  height: 28.8px;
+}
+.contact,
+.div {
+  position: absolute;
+  display: inline-block;
+}
+.contact {
+  top: 0;
+  left: 15.8px;
+  font-size: 16px;
+  width: 69.9px;
+  height: 18.3px;
+}
+.div {
+  top: 1.9px;
+  left: 26.1px;
+  width: 82.9px;
+  height: 11.9px;
+}
+.frame-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16.8px;
+  height: 13.7px;
+  overflow: hidden;
+  object-fit: contain;
+}
+.frame-div,
+.parent {
+  position: absolute;
+  top: 34.8px;
+  left: 13px;
+  width: 109px;
+  height: 13.7px;
+}
+.frame-div {
+  top: 72.7px;
+  left: 0;
+  width: 15.7px;
+  height: 12.4px;
+  overflow: hidden;
+}
+.colombosri-lanka {
+  position: absolute;
+  top: 0;
+  left: 27.1px;
+  line-height: 15.02px;
+  display: inline-block;
+  width: 150px;
+  height: 26.7px;
+}
+.group-child2 {
+  position: absolute;
+  top: 4.8px;
+  left: 0;
+  width: 18.6px;
+  height: 15.6px;
+  overflow: hidden;
+}
+.colombosri-lanka-parent {
+  position: absolute;
+  top: 91.4px;
+  left: 15.8px;
+  width: 177px;
+  height: 26.7px;
+}
+.icare001gmailcom {
+  position: absolute;
+  top: 1.9px;
+  left: 26.1px;
+  display: inline-block;
+  width: 136px;
+  height: 11px;
+}
+.dashiconsemail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 17.7px;
+  height: 15.6px;
+  overflow: hidden;
+}
+.contact-parent,
+.icare001gmailcom-parent {
+  position: absolute;
+  top: 62.3px;
+  left: 16.8px;
+  width: 162.1px;
+  height: 15.6px;
+}
+.contact-parent {
+  top: 14px;
+  left: 910px;
+  width: 192.8px;
+  height: 118.1px;
+  font-size: 11px;
+  color: #fcfdff;
+}
+.logo-2-icon {
+  position: absolute;
+  top: 14px;
+  left: 87px;
+  border-radius: 50px;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+}
+.footer-inner {
+  position: absolute;
+  top: 104px;
+  left: 1612px;
+  width: 18px;
+  height: 16px;
+  overflow: hidden;
+}
+.copyright2024icare {
+  position: absolute;
+  top: 140px;
+  left: 941px;
+  font-weight: 500;
+  font-family: Poppins;
+  display: inline-block;
+  width: 212px;
+  height: 31px;
+}
+.footer {
+  position: absolute;
+  top: 977px;
+  left: 0;
+  background-color: #4270a2;
+  width: 1440px;
+  height: 188px;
+  font-size: 16px;
+  color: #fff;
+  font-family: Roboto;
+}
+.group-child3 {
+  position: absolute;
+  top: calc(50% - 24.5px);
+  left: calc(50% - 150px);
+  border-radius: 18px 0 0 18px;
+  background-color: rgba(48, 113, 114, 0.31);
+  width: 300px;
+  height: 49px;
+}
+
+.rectangle-parent1 {
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 166.5px);
+  width: 300px;
+  height: 49px;
+}
+.group-icon {
+  position: absolute;
+  top: 1px;
+  left: 283px;
+  width: 50px;
+  height: 49px;
+}
+.group-parent1 {
+  position: absolute;
+  top: calc(50% - 325px);
+  left: calc(50% + 70px);
+  width: 333px;
+  height: 50px;
+  font-size: 18px;
+  font-family: ABeeZee;
+}
+.optometristhome {
+  width: 100%;
+  background-color: #fff;
+  text-align: left;
+  font-size: 23px;
+  color: #000;
+  font-family: Poppins;
+}
+
+.search {
+  position:absolute;
+  margin-top:210px;
+}
+
+.search-button {
+  position: absolute;
+  top: 195px;
+  left: 80px;
+  width: 444px;
+  height: 65px;
+  color: #7138a3;
+  border: none;
+  border-radius: 5px;
+  
+}
+
+.search-button button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.search-button button,
+.customer-details button {
+  padding: 10px 20px;
+  background-color: #307172;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px; /* Add margin-right for spacing between buttons */
+}
+
+.search button {
+  background-color: #056156; /* Blue color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.customer-details {
+  margin-top: 30px;
+  margin-left: -9px;
+  padding: 20px;
+  border: 1px solid #efebeb;
+  border-radius: 5px;
+  background-color: #f0f5fa; /* Light gray background */
+}
+
+.customer-details,.option{
+  float: right ;
+}
+
+.customer-details h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.customer-details p {
+  margin: 5px 0;
+}
+
+.customer-details button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #056156; /* Blue color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search input::placeholder {
+  color: #232726;
+  
+  
+}
+
+.search input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px; 
+  background-color: #8cc2bd;
+}
+
+.test {
+  padding: 0px;
+  float: right;
+  box-shadow: 0 0 5px rgba(221, 220, 220, 0.1);
+  width: 250px;
+  height:370px;
+  border-radius: 40%; 
+  
+}
+
+.number {
+  top: 0px;
+  padding:10px 0px;
+  float: right ;
+  box-shadow: 0 0 5px rgba(221, 220, 220, 0.1);
+  width: 1500px; /* Change fixed width to auto */
+  height: 700px; /* Change fixed height to auto */
+  border-radius: 50%;
+  clear: both; /* Move the image below the floated content */
+}
+

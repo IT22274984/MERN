@@ -1,0 +1,83 @@
+.home,
+.library,
+.support,
+.logout,
+.appointment,
+.logo-1-icon {
+  position: absolute;
+  top: 88px;
+  font-weight: 500;
+  display: inline-block;
+  height: 54px;
+  text-align: center; /* Center the text */
+}
+
+.home {
+  font-size: 1.5em;
+  left: 10vw; /* Example: 5% of the viewport width */
+  width: 15vw; /* Example: 15% of the viewport width */
+}
+
+.library {
+  font-size: 1.5em;
+  left: 25vw; /* Example: 25% of the viewport width */
+  width: 15vw; /* Example: 15% of the viewport width */
+}
+
+.support {
+  font-size: 1.5em;
+  left: 45vw; /* Example: 45% of the viewport width */
+  width: 15vw; /* Example: 15% of the viewport width */
+}
+
+.logout {
+  font-size: 1.5em;
+  left: 85vw; /* Example: 65% of the viewport width */
+  width: 15vw; /* Example: 15% of the viewport width */
+}
+
+.appointment {
+  font-size: 1.5em;
+  left: 65vw; /* Example: 65% of the viewport width */
+  width: 15vw; /* Example: 15% of the viewport width */
+}
+
+
+
+
+
+.logo-1-icon {
+  top: 75px;
+  left: 0.0005vw; /* Example: 1% of the viewport width */
+  border-radius: 50px;
+  width: 15vw; /* Example: 12% of the viewport width */
+  height: 25vh; /* Example: 20% of the viewport height */
+  object-fit: cover;
+}
+
+.header {
+  width: 100%;
+  background-color: var(--color-white);
+  max-width: 100%;
+  height: 190px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-9xl);
+  color: var(--color-darkslategray);
+  font-family: var(--font-poppins);
+}
+
+
+.logout button {
+  background-color: #307172; /* Red color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout button:hover {
+  background-color: #516f90; /* Darker red color on hover */
+}
+

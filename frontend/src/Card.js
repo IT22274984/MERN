@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import AddTask from "./components/AddTask";
+import AddCard from "./components/AddCard";
 //import TasksList from "./components/TasksList";
 import Container from "react-bootstrap/Container";
 import { Row, Col } from "react-bootstrap";
@@ -16,7 +16,7 @@ function Card() {
         <div className="justify-content-md-center">
           <Row>
             <Col lg="6">
-              <AddTask />
+              <AddCard />
               <a href="/cards-list" className="premium-button">Go to cards List</a>
             </Col>
           </Row>

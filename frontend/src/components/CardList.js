@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import MyVerticallyCenteredModal from './UpdateTask'; // Assuming you have an UpdateCard component for updating cards
+import MyVerticallyCenteredModal from './UpdateCard'; // Assuming you have an UpdateCard component for updating cards
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedCard, removeCardFromList, deleteCardFromServer } from "../slices/cardSlices";
 import { getCardsFromServer } from './../slices/cardSlices';
@@ -45,7 +45,7 @@ const CardsList = () => {
 
   return (
     <>
-      <PremiumHeader /> {/* Include the PremiumHeader component */}
+      {/* <PremiumHeader /> Include the PremiumHeader component */}
 
       {/* Search Bar */}
       <Form.Group controlId="search" className="d-flex align-items-center">
@@ -102,8 +102,8 @@ const CardsList = () => {
       </div>
 
       <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+        open={modalShow}
+        onClose={() => setModalShow(false)}
       />
 
       {/* Footer */}
