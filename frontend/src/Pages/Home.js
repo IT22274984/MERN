@@ -21,9 +21,9 @@ const ModifiedHome = () => {
       
       <div className="modified-main-content">
       <p>Welcome to Customer Support System!</p><br/><br/>
-        <a href="http://localhost:3000/home" className="modified-pay-details-button">FAQs</a>
-        <a href="http://localhost:3000/sdf" className="modified-pay-details-button">E-tickets</a>
-        <a href="http://localhost:3000/df" className="modified-pay-details-button">Chat box</a>
+        <a href="http://localhost:4000/home" className="modified-pay-details-button">FAQs</a>
+        <a href="http://localhost:4000/sdf" className="modified-pay-details-button">E-tickets</a>
+        <a href="http://localhost:4000/df" className="modified-pay-details-button">Chat box</a>
         <br/>
         <br/>
         <br/>

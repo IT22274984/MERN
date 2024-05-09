@@ -172,7 +172,7 @@ const Paytable = () => {
       <header className="header">
         <img src={logo} alt="Your image description" style={{ width: '100px', height: 'auto' }} />
         <nav className="nav-bar">
-          <a href="http://localhost:3000/home">Home</a>
+          <a href="http://localhost:4000/home">Home</a>
           <a href="/all-pay-details">All Pay details</a>
           <a href="/appointments">Appointments</a>
           <a href="/support">Support</a>

@@ -12,6 +12,8 @@ const doctorRoutes = require("./routes/users");
 const uauthRoutes = require("./routes/uauth");
 const customerRoutes = require("./routes/customers");
 const cauthRoutes = require("./routes/cauth");
+const userRoutesH = require('./routes/user.route.js');
+const authRoutes = require('./routes/auth.route.js');
 const prescriptionRouter = require("./routes/prescription-routes");
 const mongoose = require('mongoose')
 var cors = require('cors')
@@ -20,8 +22,8 @@ var cors = require('cors')
 app.use(cors())
 app.use(express.json())
 app.use((req, res, next) => {
-    console.log('path' + req.path + 'method' + req.method);
-    next();
+  console.log('path' + req.path + 'method' + req.method);
+  next();
 })
 
 
@@ -47,10 +49,12 @@ app.use("/server/payment", payment)
 app.use("/api/card", taskRout)
 app.use('/Appoinments', require('./routes/appoinmentRoutes'));
 app.use("/opticals", router); // localhost:5000/opticals
-app.use("/users",userRoutes);
-app.use("/userMail",userRou)
+app.use("/users", userRoutes);
+app.use("/userMail", userRou)
 app.use("/api/doctors", doctorRoutes);
 app.use("/api/uauth", uauthRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/cauth", cauthRoutes);
 app.use("/prescriptions", prescriptionRouter);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutesH);

@@ -49,7 +49,7 @@ const NewFormTable = ({ handleSubmit, handleOnChange }) => { // Changed componen
                     
                     </form>
                 </div>
-                <a href="http://localhost:3000/payment" className='new-pay-btn'>PAY</a> {/* Updated class name */}
+                <a href="http://localhost:4000/payment" className='new-pay-btn'>PAY</a> {/* Updated class name */}
             </div>
             <footer className="footer"> {/* Simple footer */}
                 <p>ICare</p>

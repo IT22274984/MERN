@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { persistor, store } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <Provider store={store}>
-      <App />
+    <Provider store={store}>
+      {/* <PersistGate persistor={persistor} loading={null}> */}
+        <App />
+      {/* </PersistGate> */}
     </Provider>
   </React.StrictMode>
 );
