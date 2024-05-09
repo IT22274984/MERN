@@ -46,7 +46,7 @@ const PrescriptionDetail = () => {
       available: checked,
     });
     setOpen(false);
-    history("/prescriptions");
+    history("/OptometristHome");
   };
 
   const handleChange = (e) => {

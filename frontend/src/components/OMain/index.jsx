@@ -61,7 +61,7 @@ const OptometristHome = () => {
 
     const handleUploadReport = () => {
       // Handle upload report logic
-      navigate("/add", { state: { customer: selectedCustomer } });
+      navigate("/addprescription", { state: { customer: selectedCustomer } });
   };
 
     const handleViewReports = () => {

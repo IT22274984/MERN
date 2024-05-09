@@ -1,3 +1,9 @@
+body {
+  background-image: url('./images/Home.jpg');
+  background-size: cover;
+ 
+  background-repeat: no-repeat;
+}
 .App {
   text-align: center;
 }
@@ -10,6 +16,16 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+ 
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -35,4 +51,35 @@
   to {
     transform: rotate(360deg);
   }
+}
+.premium-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #60bf8c; /* Green color */
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* In your App.css file or any other CSS file */
+.premium-footer {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #333; /* Dark text color */
+}
+
+.premium-footer-text {
+  font-size: 16px;
+  margin: 0;
 }

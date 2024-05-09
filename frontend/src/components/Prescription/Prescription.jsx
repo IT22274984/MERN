@@ -15,7 +15,7 @@ const Prescription = (props) => {
       .delete(`http://localhost:4000/prescriptions/${_id}`)
       .then(() => {
         setOpen(false);
-        history("/prescriptions");
+        history("/OptometristHome");
       });
   };
 

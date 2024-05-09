@@ -1,0 +1,11 @@
+.table-container {
+    width: 100%;
+    height: 100vh; /* Set height to 100% of the viewport height */
+    overflow: auto; /* Add overflow property if content exceeds the viewport height */
+  }
+  
+  .table {
+    width: 100%;
+    height: 100%;
+  }
+  

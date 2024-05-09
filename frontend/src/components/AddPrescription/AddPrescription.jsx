@@ -77,7 +77,7 @@ import {
     const handleConfirm = () => {
       sendRequest().then(() => {
         setOpen(false);
-        history("/prescriptions");
+        history("/OptometristHome");
       });
     };
   

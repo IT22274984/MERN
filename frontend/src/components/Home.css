@@ -1,0 +1,30 @@
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .buttons-container > * {
+    margin-right: 10px;
+  }
+  
+  .buttons-container > *:last-child {
+    margin-right: 0;
+  }
+  
+  .header-icons {
+    display: inline-block;
+  }
+
+  .h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+ 
+
+ 
+  
+  
