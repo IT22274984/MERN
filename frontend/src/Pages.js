@@ -58,6 +58,7 @@ import Prescriptions from "./components/Prescription/Prescriptions";
 import PrescriptionDetail from "./components/Prescription/PrescriptionDetail";
 import CPrescriptions from "./components/Prescription/CPrescriptions";
 import OpCdetail from "./components/Op,Cdetail/OpCdetail"
+import AllUsers from './Pages/Users/AllUsers';
 
 export default function Pages() {
   const [favorites, setFavorites] = useState([]); // State for favorites
@@ -108,6 +109,7 @@ export default function Pages() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/usersDetails" element={<AllUsers />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
