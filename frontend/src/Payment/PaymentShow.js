@@ -82,26 +82,41 @@ function PaymentShow() {
   const BillPdf = () => (
     <Document>
       <Page size="A4" style={styles.page}>
+        {/* Header */}
         <View style={styles.header}>
-          <Image src={logo} style={styles.logo} />
-          <Text style={styles.companyName}>ICare Pay</Text>
+          <View style={styles.headerLeft}>
+            <Image src={logo} style={styles.logo} />
+            <Text style={styles.companyName}>ICare Pay</Text>
+          </View>
+          <View style={styles.headerRight}>
+            <Text style={styles.headerText}>About ICare</Text>
+            <Text style={styles.headerText}>Contact: support@icarepay.com | Phone: +1234567890</Text>
+          </View>
         </View>
-        <Text style={styles.billHeader}>Your Invoice.</Text>
+  
+        {/* Bill Content */}
+        <Text style={styles.billHeader}>Invoice</Text>
         <View style={styles.billContent}>
           <Text style={styles.label}>Recipient: {name}</Text>
           <Text style={styles.label}>Email: {email}</Text>
           <Text style={styles.label}>Amount: LKR {amount}</Text>
-          <Text style={styles.label}>Card Name: {selectedCard}</Text>
           <Text style={styles.info}>
             Thank you for using ICare Pay. We are committed to providing a secure and convenient payment experience for our customers.
           </Text>
-          <Text style={styles.info}>
-            Invoice Date: {currentDate}
-          </Text>
+          <Text style={styles.info}>Invoice Date: {currentDate}</Text>
+          <Text style={styles.thankYou}>Thank you for your purchase!</Text>
+        </View>
+  
+        {/* Footer */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>ICare Pay | Financial Safety & Convenience</Text>
+          <Text style={styles.footerText}>Contact: support@icarepay.com | Phone: +1234567890</Text>
+          <Text style={styles.footerText}>Current Date: {currentDate}</Text>
         </View>
       </Page>
     </Document>
   );
+  
 
   return (
     <div className="payment-container">
@@ -171,6 +186,7 @@ function PaymentShow() {
   );
 }
 
+
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Helvetica',
@@ -178,7 +194,17 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    marginBottom: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#2d8659', // Dark green color for header
+    padding: 10,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerRight: {
+    alignItems: 'flex-end',
   },
   logo: {
     width: 60,
@@ -188,31 +214,47 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#ffffff', // White text color
+  },
+  headerText: {
+    fontSize: 12,
+    color: '#ffffff', // White text color
+    marginBottom: 5,
   },
   billHeader: {
-    fontSize: 20,
-    marginBottom: 10,
+    fontSize: 24,
+    marginBottom: 20,
     textAlign: 'center',
+    textDecoration: 'underline',
   },
   billContent: {
     marginBottom: 20,
   },
   label: {
-    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 10,
   },
   info: {
-    marginTop: 20,
     fontSize: 12,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  thankYou: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 20,
     textAlign: 'center',
   },
   footer: {
-    position: 'absolute',
-    bottom: 30,
-    left: 0,
-    right: 0,
-    textAlign: 'center',
-    fontSize: 12,
+    backgroundColor: '#527a7a', // Blue color for footer
+    padding: 10,
+  },
+  footerText: {
+    fontSize: 10,
+    marginBottom: 5,
+    color: '#ffffff', // White text color
   },
 });
 
+  
 export default PaymentShow;
