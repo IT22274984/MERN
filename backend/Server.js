@@ -8,6 +8,11 @@ const payment = require('./routes/PaymentRoutes/PaymentRouter')
 const router = require("./routes/optical_routes");
 const userRoutes = require("./routes/uRoutes")
 const userRou = require("./routes/userRoutes")
+const doctorRoutes = require("./routes/users");
+const uauthRoutes = require("./routes/uauth");
+const customerRoutes = require("./routes/customers");
+const cauthRoutes = require("./routes/cauth");
+const prescriptionRouter = require("./routes/prescription-routes");
 const mongoose = require('mongoose')
 var cors = require('cors')
 
@@ -44,3 +49,8 @@ app.use('/Appoinments', require('./routes/appoinmentRoutes'));
 app.use("/opticals", router); // localhost:5000/opticals
 app.use("/users",userRoutes);
 app.use("/userMail",userRou)
+app.use("/api/doctors", doctorRoutes);
+app.use("/api/uauth", uauthRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api/cauth", cauthRoutes);
+app.use("/prescriptions", prescriptionRouter);

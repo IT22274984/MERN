@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation,Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import C_Header from "./components/C_Header";
 //import Home from "./components/Home";
@@ -39,9 +39,24 @@ import UpdateAppoinment from './components/UpdateAppoinment';
 import Admincr from "./Pages/Admincr";
 import Clientcr from "./Pages/Clientcr";
 import Adminst from "./Pages/Adminst";
+//nava
+import OMain from "./components/OMain";
+import OSignup from "./components/OSingup";
+import OLogin from "./components/OLogin";
+import CMain from "./components/CMain";
+import CSignup from "./components/CSingup";
+import CLogin from "./components/CLogin";
+import AddPrescription from "./components/AddPrescription/AddPrescription"
+import Prescriptions from "./components/Prescription/Prescriptions";
+import PrescriptionDetail from "./components/Prescription/PrescriptionDetail";
+import CPrescriptions from "./components/Prescription/CPrescriptions";
+import OpCdetail from "./components/Op,Cdetail/OpCdetail"
 
 export default function Pages() {
   const [favorites, setFavorites] = useState([]); // State for favorites
+
+  const user = localStorage.getItem("token");
+	const customer = localStorage.getItem("token");
   
   return (
     <>
@@ -82,6 +97,19 @@ export default function Pages() {
         <Route path="/spectacles" element={<Spectacles favorites={favorites} setFavorites={setFavorites} />} exact />
         <Route path="/QR" element={<QRScanner />} exact />
         <Route path="*" element={<NotFound />}/>
+        {user && <Route path="/OptometristHome" exact element={<OMain />} />}
+				<Route path="/Osignup" exact element={<OSignup />} />
+				<Route path="/Ologin" exact element={<OLogin />} />
+				<Route path="/OptometristHome" element={<Navigate replace to="/Ologin" />} />
+				{customer && <Route path="/CustomerHome" exact element={<CMain />} />}
+				<Route path="/Csignup" exact element={<CSignup />} />
+				<Route path="/Clogin" exact element={<CLogin />} />
+				<Route path="/CustomerHome" element={<Navigate replace to="/Clogin" />} />
+				<Route path="/addprescription" element={<AddPrescription />} />
+				<Route path="/prescriptions" element={<Prescriptions />} exact />
+				<Route path="/prescriptions/:id" element={<PrescriptionDetail />} exact />
+				<Route path="/Cprescriptions" element={<CPrescriptions />} exact />
+				<Route path="/OpCdetail" element={<OpCdetail />} exact />
       </Routes>
     </Router>
     </>
