@@ -21,7 +21,7 @@ const OSignup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/users";
+			const url = "http://localhost:4000/api/doctors";
 			const { data: res } = await axios.post(url, data);
 			navigate("/Ologin");
 			console.log(res.message);

@@ -26,8 +26,18 @@ import {
     });
     const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
+    const [error, setError] = useState("");
+
 
     const handleChange = (e) => {
+      const { name, value } = e.target;
+  if (name === "Mobilenumber") {
+    if (!/^\d{10}$/.test(value)) {
+      setError("Please enter a valid 10-digit mobile number.");
+    } else {
+      setError("");
+    }
+  }
       setInputs((prevState) => ({
         ...prevState,
         [e.target.name]: e.target.value,
@@ -39,7 +49,7 @@ import {
   
     const sendRequest = async () => {
       await axios
-        .post("http://localhost:8080/prescriptions/upload", {
+        .post("http://localhost:4000/prescriptions/upload", {
           Mobilenumber:String(inputs.Mobilenumber),
           Sphere: Number(inputs.Sphere ),
           Cylinder: Number(inputs.Cylinder),
@@ -87,12 +97,13 @@ import {
           <TextField
             value={inputs.Mobilenumber}
             onChange={handleChange}
-            type="number"
+            type="string"
             margin="normal"
             fullWidth
             variant="outlined"
             name="Mobilenumber"
           />
+          {error && <p className="error">{error}</p>}
           <FormLabel>Sphere</FormLabel>
           <TextField
             value={inputs.Sphere}

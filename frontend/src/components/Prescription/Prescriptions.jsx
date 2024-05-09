@@ -18,7 +18,7 @@ console.log(customer.Mobilenumber);
 
 const { mobile } = location.state;
 console.log(mobile);
-const URL = `http://localhost:8080/prescriptions/customers/${customer.Mobilenumber}`;
+const URL = `http://localhost:4000/prescriptions/customers/${customer.Mobilenumber}`;
 const fetchHandler = async () => {
 return await axios.get(URL).then((res) => res.data);
 };

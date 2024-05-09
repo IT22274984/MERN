@@ -4,21 +4,21 @@ const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
-const userSchema = new mongoose.Schema({
+const doctorSchema = new mongoose.Schema({
 	firstName: { type: String, required: true },
 	lastName: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
 });
 
-userSchema.methods.generateAuthToken = function () {
+doctorSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({ _id: this._id }, process.env.SocBsEXyAAoVChKl, {
 		expiresIn: "7d",
 	});
 	return token;
 };
 
-const User = mongoose.model("user", userSchema);
+const Doctor = mongoose.model("doctor", doctorSchema);
 
 const validate = (data) => {
 	const schema = Joi.object({
@@ -30,4 +30,4 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
-module.exports = { User, validate };
+module.exports = {Doctor, validate };

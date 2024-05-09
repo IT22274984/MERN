@@ -15,10 +15,10 @@ const CLogin = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/cauth";
+			const url = "http://localhost:4000/api/cauth";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
-			window.location = "/CustomerHome";
+			window.location = "/OptometristHome";
 		} catch (error) {
 			if (
 				error.response &&

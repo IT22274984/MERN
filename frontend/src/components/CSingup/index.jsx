@@ -22,7 +22,7 @@ const CSignup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/customers";
+			const url = "http://localhost:4000/api/customers";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("signupDetails", JSON.stringify(data)); // Store signup details in local storage
 			navigate("/Clogin");

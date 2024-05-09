@@ -16,18 +16,33 @@ const OptometristHome = () => {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [showPrescriptions, setShowPrescriptions] = useState(false);
   const [isPresent, setIsPresent] = useState(false);
+  const [error, setError] = useState("");
+  const [searchResult, setSearchResult] = useState("pending"); // Can be "pending", "found", or "notFound"
+
 
     const handleSearch = async () => {
+      const isValidMobile = /^[0-9]{10}$/.test(searchQuery);
+      if (!isValidMobile) {
+        setError("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
         try {
-          const url = `http://localhost:8080/api/customers/search/${searchQuery}`;
+          const url = `http://localhost:4000/api/customers/search/${searchQuery}`;
             const { data } = await axios.get(url);
             if (data) {
               setSelectedCustomer(data[0]); // Assuming the API returns an array of customers and you want to select the first one
+              setSearchResult("found");
           } else {
               setSelectedCustomer(null);
+              setSearchResult("notFound");
+              setError("No customer found for the entered mobile number.");
           }
+          setError(""); // Clear any previous error
         } catch (error) {
             console.error(error);
+            setError("An error occurred. Please try again.");
+            setSearchResult("notFound");
         }
     };
 
@@ -120,8 +135,12 @@ const OptometristHome = () => {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <button onClick={handleSearch}>Search</button>                  
-{selectedCustomer && (
+                        <button onClick={handleSearch}>Search</button> 
+                        {error && <p className="error">{error}</p>}
+  {searchResult === "notFound" && (
+    <p className="not-found">No customer found for the entered mobile number.</p>
+  )}
+  {selectedCustomer && searchResult === "found" && (
   <div className="customer-details">
     <h2>Customer Details</h2>
     <p>Name: {selectedCustomer.firstName} {selectedCustomer.lastName}</p>

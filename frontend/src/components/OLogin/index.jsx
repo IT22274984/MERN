@@ -15,10 +15,10 @@ const OLogin = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/uauth";
+			const url = "http://localhost:4000/api/uauth";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
-			window.location = "/";
+			window.location = "/OptometristHome";
 		} catch (error) {
 			if (
 				error.response &&

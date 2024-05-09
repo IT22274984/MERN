@@ -12,7 +12,7 @@ const Prescription = (props) => {
 
   const handleDelete = async () => {
     await axios
-      .delete(`http://localhost:8080/prescriptions/${_id}`)
+      .delete(`http://localhost:4000/prescriptions/${_id}`)
       .then(() => {
         setOpen(false);
         history("/prescriptions");

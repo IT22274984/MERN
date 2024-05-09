@@ -28,7 +28,7 @@ const PrescriptionDetail = () => {
 
   useEffect(() => {
     const fetchPrescription = async () => {
-      const response = await axios.get(`http://localhost:8080/prescriptions/${id}`);
+      const response = await axios.get(`http://localhost:4000/prescriptions/${id}`);
       setInputs(response.data.prescription);
     };
     fetchPrescription();
@@ -41,7 +41,7 @@ const PrescriptionDetail = () => {
   };
 
   const confirmUpdate = async () => {
-    await axios.put(`http://localhost:8080/prescriptions/${id}`, {
+    await axios.put(`http://localhost:4000/prescriptions/${id}`, {
       ...inputs,
       available: checked,
     });

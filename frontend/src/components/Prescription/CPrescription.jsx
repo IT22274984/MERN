@@ -12,7 +12,7 @@ const Prescription = (props) => {
   const { _id, Sphere, Cylinder, Axis, PupilDistance, Lence, Description,Mobilenumber } = props.prescription;
   const deleteHandler = async () => {
     await axios
-      .delete(`http://localhost:8080/prescriptions/${_id}`)
+      .delete(`http://localhost:4000/prescriptions/${_id}`)
       .then((res) => res.data)
       .then(() => history("/"))
       .then(() => history("/prescriptions"));
@@ -20,33 +20,56 @@ const Prescription = (props) => {
 
   const generateReport = () => {
     const doc = new jsPDF();
-  
-    // Set up the initial y position for text
-    let yPos = 10;
-  
-    // Add the details to the PDF
-    doc.setFontSize(15);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(100);
 
-    doc.text(`Sphere: ${Sphere}`, 10, yPos);
+    // Add border
+  doc.setLineWidth(0.5);
+  doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10);
+
+  
+    // Add image
+    const imgData = img; // Assuming img contains the base64 or URL of the image
+    doc.addImage(imgData, 'PNG', 10, 10, 50, 50);
+  
+    // Add text
+    doc.setFontSize(31);
+    const prescriptionDetailsText = "Prescription Details";
+    const prescriptionDetailsTextWidth = doc.getStringUnitWidth(prescriptionDetailsText) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+    const centerX = (doc.internal.pageSize.width - prescriptionDetailsTextWidth) / 2;
+    doc.text(prescriptionDetailsText, centerX, 32);
+  
+    // Add date
+    const currentDate = new Date().toLocaleDateString('en-GB');
+    const dateText = `Date: ${currentDate}`;
+    const dateTextWidth = doc.getStringUnitWidth(dateText) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+    doc.text(dateText, doc.internal.pageSize.width - dateTextWidth - 10, 65);
+  
+    // Add Dr.Navashanth
+    doc.setFontSize(27);
+    const drNavashanthText = "Dr.Navashanth";
+    doc.text(drNavashanthText, 10, 65);
+  
+    // Add prescription details
+    doc.setFontSize(20);
+    let yPos = 90;
+    doc.text(`Mobile Number: ${Mobilenumber}`, 10, yPos);
     yPos += 10;
-    doc.text(`Cylinder: ${Cylinder}`, 10, yPos);
+    doc.text(`Sphere: ${Sphere}D`, 10, yPos);
     yPos += 10;
-    doc.text(`Axis: ${Axis}`, 10, yPos);
+    doc.text(`Cylinder: ${Cylinder}D`, 10, yPos);
     yPos += 10;
-    doc.text(`Pupil Distance: ${PupilDistance}`, 10, yPos);
+    doc.text(`Axis: ${Axis} degrees`, 10, yPos);
+    yPos += 10;
+    doc.text(`Pupil Distance: ${PupilDistance}mm`, 10, yPos);
     yPos += 10;
     doc.text(`Lence: ${Lence}`, 10, yPos);
     yPos += 10;
     doc.text(`Description: ${Description}`, 10, yPos);
-
-    doc.setLineWidth(0.5);
-  doc.rect(5, 5, 200, 100);
   
     // Save the PDF
     doc.save('Prescription.pdf');
   };
+  
+  
   
   const currentDate = new Date().toLocaleDateString('en-GB');
 
