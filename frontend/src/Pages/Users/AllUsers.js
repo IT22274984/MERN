@@ -20,12 +20,20 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function BasicTable() {
+export default function AllUsers() {
 
     const [users, setusers] = React.useState([])
 
+    const deletehandler = (id) => {
+        axios.delete("http://localhost:4000/api/user/" + id).then((res) => [
+            alert("User deleted")
+        ]).catch((er) => {
+            alert("Unable to delete")
+        })
+    }
+
     React.useEffect(() => {
-        axios.get("http://localhost:4000/api/user/").then((res) => {
+        axios.get("http://localhost:4000/api/user/get").then((res) => {
             setusers(res.data)
         }).catch((er) => { })
     }, [])
@@ -34,11 +42,11 @@ export default function BasicTable() {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell>User Name</TableCell>
+                        <TableCell align="left">Email</TableCell>
+                        <TableCell align="left">profilr Pic</TableCell>
+                        {/* <TableCell align="right">id</TableCell> */}
+                        <TableCell align="right">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -47,13 +55,18 @@ export default function BasicTable() {
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">
-                                {row.name}
+                            <TableCell >
+                                {row.username}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="left">{row.email}</TableCell>
+                            <TableCell align="left"><img src={row.profilePicture} style={{ width: "40px", height: "40px" }} /></TableCell>
+                            {/* <TableCell align="right">{row._id}</TableCell> */}
+                            <TableCell align="right">
+                                <div style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", flex: "1" }}>
+                                    {/* <button style={{ marginBottom: "5px" }}>Edit</button> */}
+                                    <button onClick={() => deletehandler(row._id)} style={{ backgroundColor: "red" }}>Delete</button>
+                                </div>
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
